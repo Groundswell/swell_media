@@ -17,18 +17,7 @@ module SwellMedia
 			@subtitle = @category.try(:description)
 
 
-			@results = SwellMedia::Article.published
-			@results = @results.where( category: @category ) if @category.present?
-			@results = @results.with_all_tags( @tags ) if @tags.present?
-			@results = @results.where( user: @users ) if @users.present?
-
-			if @search_term.present?
-				search_array = @search_term.downcase.gsub(/[^\sa-z0-9]/, '').split(' ').select{ |str| str.strip.present? }
-				@results = @results.where( "regexp_split_to_array(lower(title), E'\\\\s+') && array['#{search_array.join("','")}']" ).order("( SELECT COUNT(*) FROM ( SELECT UNNEST( regexp_split_to_array(lower(title), E'\\\\s+' ) ) INTERSECT SELECT UNNEST( array['#{search_array.join("','")}'] ) ) intersect_elements ) DESC")
-			end
-
-			@results = @results.order(publish_at: :desc)
-
+			@articles = SwellMedia::SearchService.search( SwellMedia::Article, term: @search_term, category: @category, users: @users, tags: @tags )
 			@results = @results.page(params[:page]).per(6)
 
 

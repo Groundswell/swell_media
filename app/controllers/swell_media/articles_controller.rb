@@ -2,38 +2,24 @@
 	class ArticlesController < ApplicationController
 		
 		def index
-			@articles = Article.published.order( publish_at: :desc )
 			@tags = []# Article.published.tags_counts
 
-			if @tagged = params[:tagged]
-				@articles = @articles.with_any_tags( @tagged )
-			end
+			@query = params[:q] if params[:q].present?
+			@tagged = params[:tagged]
+			@author = SwellMedia.registered_user_class.constantize.friendly.find( params[:by] ) if params[:by].present?
+			@category = Category.friendly.find( params[:category] || params[:cat] ) if ( params[:category] || params[:cat] ).present?
 
-			if @keyword = params[:keyword]
-				@articles = @articles.where( "array[:term] && keywords", term: @keyword )
-			end
+			@title = @category.try(:name)
+			@title ||= "Blog"
 
-			if params[:by].present? && @author = SwellMedia.registered_user_class.constantize.friendly.find( params[:by] )
-				@articles = @articles.where( user_id: @author.id )
-			end
-
-			cat = params[:category] || params[:cat]
-
-			if cat.present? && @category = Category.friendly.find( cat )		
-				@articles = @articles.where( category_id: @category.id )
-			end
-
-			if params[:q].present?
-				@query = params[:q]
-				@articles = @articles.where( "array[:q] && keywords", q: params[:q].downcase )
-			end
+			@articles = SwellMedia::SearchService.search( SwellMedia::Article, term: @query, category: @category, user: @author, tags: @tagged )
 
 			# set count before pagination
 			@count = @articles.count
 
 			@articles = @articles.page( params[:page] )
 
-			set_page_meta title: "#{SwellMedia.app_name} Blog", og: { type: 'blog' }, twitter: { card: 'summary' }
+			set_page_meta title: @title, og: { type: 'blog' }, twitter: { card: 'summary' }
 			
 		end
 
