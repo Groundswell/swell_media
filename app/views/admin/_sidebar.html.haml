@@ -1,0 +1,110 @@
+.cl-sidebar
+	.cl-toggle
+		%i.fa.fa-bars
+	.cl-navblock
+		.menu-space
+			.content
+				.sidebar-logo
+					.logo
+						%a{ href: '/admin' }
+							= SwellMedia.app_name
+							Admin
+				.side-user{ style: 'padding: 0 20px;' }
+
+				%ul.cl-vnavigation
+					%li.parent
+						%a{ href: '#' }
+							Assets
+						%ul.sub-menu
+							%li
+								%a{ href: swell_media.asset_admin_index_path }
+									%i.fa.fa-gear
+									Admin
+							%li
+								%a{ data: { toggle: :modal, target: '#new_asset' } }
+									%i.fa.fa-plus
+									New
+							%li.separator
+							- SwellMedia::Asset.order( created_at: :desc ).limit( 10 ).each do |asset|
+								%li
+									%a{ href: swell_media.edit_asset_admin_path( asset.id ) }
+										= image_tag asset.url, width: 24, height: 24, class: 'img img-rounded'
+										= asset.title
+
+
+					%li.parent
+						%a{ href: '#' }
+							Blog
+						%ul.sub-menu
+							%li
+								%a{ href: article_admin_index_path }
+									%i.fa.fa-gear
+									Admin
+							%li
+								%a{ data: { toggle: :modal, target: '#new_article' } }
+									%i.fa.fa-plus
+									New
+							%li.separator
+							- SwellMedia::Article.draft.order( publish_at: :desc ).limit( 10 ).each do |article|
+								%li
+									%a{ href: swell_media.edit_article_admin_path( article ) }
+										= image_tag article.avatar, width: 24, height: 24, class: 'img img-rounded'
+										= article.title
+
+					%li.parent
+						%a{ href: '#' }
+							Contacts
+						%ul.sub-menu
+							%li
+								%a{ href: swell_media.contact_admin_index_path }
+									%i.fa.fa-gear
+									Admin
+							%li.separator
+							- SwellMedia::Contact.order( created_at: :desc ).limit( 10 ).each do |contact|
+								%li
+									%a{ href: swell_media.edit_contact_admin_path( contact ) }
+										= contact.email
+
+					%li.parent
+						%a{ href: '#' }
+							Categories
+						%ul.sub-menu
+							%li
+								%a{ href: swell_media.category_admin_index_path }
+									%i.fa.fa-gear
+									Admin
+							%li
+								%a{ data: { toggle: :modal, target: '#new_category' } }
+									%i.fa.fa-plus
+									New
+
+							%li.separator
+							- SwellMedia::Category.order( created_at: :desc ).limit( 10 ).each do |category|
+								%li
+									%a{ href: edit_category_admin_path( category.id ) }
+										= image_tag category.avatar, width: 24, height: 24, class: 'img img-rounded'
+										= category.name
+
+					%li.parent
+						%a{ href: '#' }
+							Pages
+						%ul.sub-menu
+							%li
+								%a{ href: swell_media.page_admin_index_path }
+									%i.fa.fa-gear
+									Admin
+							%li
+								%a{ data: { toggle: :modal, target: '#new_page' } }
+									%i.fa.fa-plus
+									New
+							%li.separator
+							- SwellMedia::Page.order( publish_at: :desc ).limit( 10 ).each do |page|
+								%li
+									%a{ href: swell_media.edit_page_admin_path( page ) }
+										= page.title
+							
+= render 'swell_media/article_admin/new_modal'
+= render 'swell_media/asset_admin/new_modal'
+= render 'swell_media/category_admin/new_modal'
+= render 'swell_media/page_admin/new_modal'
+

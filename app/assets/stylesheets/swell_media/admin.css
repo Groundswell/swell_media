@@ -1,0 +1,25 @@
+/*
+*= require ./bootstrap/bootstrap.min
+*= require ./custom/wysiwyg
+*= require ./admin_theme/style
+
+*= require_self
+
+*/
+
+
+.active.badge{ 
+	background-color: #5a5;
+}
+
+.draft.badge{ 
+	background-color: #EC971F;
+}
+
+.archive.badge{ 
+	background-color: #aaa;
+}
+
+.trash.badge{ 
+	background-color: #a55;
+}

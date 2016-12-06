@@ -1,0 +1,26 @@
+
+
+!!!strict
+%head
+	%meta{ content: "text/html; charset=UTF-8", 'http-equiv' => "Content-Type" }
+%body
+	%p
+		You have a new
+		= @contact.type || 'contact'
+		- unless @contact.sub_type.nil?
+			(#{@contact.sub_type})
+		!
+	%p
+		%b From:
+		= @contact.email
+	
+	- if @contact.subject.present?
+		%p
+			%b Subject:
+			= @contact.subject
+	
+	- if @contact.message.present?
+		%p
+			%b Message:
+			%br
+			= raw @contact.message

@@ -1,0 +1,17 @@
+.container
+	.row
+		.col-xs-12
+			%header.page-header
+				%h1.page-title
+					- if @search_term.present?
+						%span Showing Results for
+						"#{@search_term}"
+					- else
+						- if @category.present?
+							%span Browsing Category
+						- else
+							%span Browsing
+						= @title
+				%p=@subtitle
+			- @results.each do |media|
+				= render 'swell_media/articles/row', article: media, args: {}

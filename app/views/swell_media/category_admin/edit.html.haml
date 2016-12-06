@@ -1,0 +1,60 @@
+
+.container-fluid
+	.row
+		.col-xs-10
+			%ul.breadcrumb
+				%li
+					= link_to 'Admin', admin_index_path
+				%li
+					= link_to 'Category Admin', category_admin_index_path
+				%li
+					%strong
+						Edit
+						= @category.name
+	
+	= form_for @category, as: :category, url: category_admin_path( @category ) do |f|
+	
+		.row
+			.col-xs-8
+				.form-group
+					= f.label :name
+					= f.text_field :name, class: 'form-control'
+				.form-group
+					= f.label :seq
+					= f.number_field :seq, class: 'form-control'
+		.row
+			.col-xs-4
+				.form-group
+					= f.label :avatar, 'Image (default):'
+					= image_tag @category.avatar, class: 'img-responsive', id: 'category_avatar_img'
+					%div{ style: 'text-align:center;padding:0.3em;' }
+						%a{ href: '#', data: { toggle: :assetup, for: '#category_avatar,#category_avatar_img', asset: { asset_type: 'image', use: 'avatar', status: 'active', parent_obj_id: @category.id, parent_obj_type: @category.class.base_class.name }.to_json, params: { authenticity_token: form_authenticity_token() }.to_json } }
+							%i.fa.fa-upload
+							upload
+					= f.hidden_field :avatar, class: 'form-control', id: 'category_avatar'
+					-# = text_field_tag :avatar_text_field, '', class: 'form-control', placeholder: 'Full Path to Image', data: { inputfor: '#category_avatar_asset_url' }
+			.col-xs-4
+				.form-group
+					= f.label :cover_image, 'Image (cover):'
+					= image_tag @category.cover_image, class: 'img-responsive', id: 'category_cover_image_img'
+					%div{ style: 'text-align:center;padding:0.3em;' }
+						%a{ href: '#', data: { toggle: :assetup, for: '#category_cover_image, #category_cover_image_img', asset: { asset_type: 'image', use: 'avatar', status: 'active', parent_obj_id: @category.id, parent_obj_type: @category.class.base_class.name }.to_json, params: { authenticity_token: form_authenticity_token() }.to_json } }
+							%i.fa.fa-upload
+							upload
+					= f.hidden_field :cover_image, class: 'form-control', id: 'category_cover_image'
+					-# = text_field_tag :avatar_text_field, '', class: 'form-control', placeholder: 'Full Path to Image', data: { inputfor: '#category_avatar_asset_url' }
+
+		.row
+			.col-xs-8
+				.form-group
+					= f.label :description
+					= f.text_area :description, class: 'form-control', rows: 4
+
+
+			.col-xs-4
+				.boxFocus
+					.form-group
+						= f.label :status
+						= f.collection_select :status, SwellMedia::Category.statuses, :first, :first, {}, class: 'form-control'
+					.form-group
+						= f.submit 'Update', class: 'btn btn-primary'

@@ -1,0 +1,19 @@
+
+.container
+	.row
+		.col-xs-8
+			.copyright
+				©
+				= Time.now.year
+				= SwellMedia.app_name
+				All rights reserved.
+		.col-xs-4.text-right
+			- if current_user.present?
+				Hi
+				= "#{current_user}!"
+
+				= link_to 'Admin', '/admin'
+				|
+				= link_to 'Logout', '/logout'
+			- else
+				= link_to 'Admin', '/login'

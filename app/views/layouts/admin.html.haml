@@ -1,0 +1,29 @@
+!!!strict
+/[if lt IE 7] <html class="no-js lt-ie9 lt-ie8 lt-ie7">
+/[if IE 7] <html class="no-js lt-ie9 lt-ie8">
+/[if IE 8] <html class="no-js lt-ie9">
+//[if gt IE 8] <html class="no-js">
+%html{ lang: :en }
+	%head
+		= render 'application/fb_login_popup_closer'
+		= render 'application/html_head', args: {}
+		= stylesheet_link_tag "//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
+		= stylesheet_link_tag 'http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.6/themes/smoothness/jquery-ui.css'
+
+
+		= stylesheet_link_tag "swell_media/admin", media: "all", "data-turbolinks-track" => true
+
+		= javascript_include_tag "swell_media/admin"
+		:javascript
+			$.FroalaEditor.DEFAULTS.key = '#{SwellMedia.froala_editor_key}';
+	%body
+		#cl-wrapper
+			= render 'admin/sidebar'
+			#pcont.container-fluid
+				= render 'admin/navbar'
+
+				.cl-mcont
+					= render 'application/flash'
+					= yield
+
+		

@@ -1,0 +1,28 @@
+
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+
+development:
+  <<: *default
+  database: <%= ENV["DEV_DATABASE"] || 'swell_media_app_development' %>
+  username: <%= ENV["DEV_DATABASE_USERNAME"] || 'postgres' %>
+  password: <%= ENV["DEV_DATABASE_PASSWORD"] %>
+  host: <%= ENV["DEV_DATABASE_HOST"] || 'localhost' %>
+  port: <%= ENV["DEV_DATABASE_PORT"] || '5432' %>
+
+test:
+  <<: *default
+  encoding: unicode
+  database: <%= ENV["TEST_DATABASE"] || 'swell_media_app_test' %>
+  pool: 5
+  username: <%= ENV["DEV_DATABASE_USERNAME"] || 'postgres' %>
+  password: <%= ENV["DEV_DATABASE_PASSWORD"] || 'test1234' %>
+  host: <%= ENV["DEV_DATABASE_HOST"] || '127.0.0.1' %>
+  port: <%= ENV["DEV_DATABASE_PORT"] || '5432' %>
+
+production:
+  <<: *default
+  url:  <%= ENV["DATABASE_URL"] %>
+  pool: <%= ENV["DATABASE_POOL"] || 14 %>
