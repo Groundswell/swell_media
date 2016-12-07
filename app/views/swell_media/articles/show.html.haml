@@ -20,7 +20,7 @@
 								= tag.name
 		- if @media.avatar.present?
 			.post-avatar{ style: 'text-align:center;' }
-				= image_tag @media.avatar
+				= image_tag @media.avatar, width: '75%'
 
 		.post-content
 			= raw @media.content

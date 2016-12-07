@@ -50,6 +50,7 @@ SwellMedia::Engine.routes.draw do
 	resources :exports
 
 	get 'console' => 'static#console'
+	
 
 	#resources :sessions
 
