@@ -6,7 +6,7 @@ if (request.user_agent || '').include?('Feedly/')
 	xml.rss :version => "2.0", 'xmlns:content'=>"http://purl.org/rss/1.0/modules/content/", 'xmlns:webfeeds' => "http://webfeeds.org/rss/1.0", 'xmlns:wfw'=>"http://wellformedweb.org/CommentAPI/", 'xmlns:dc'=>"http://purl.org/dc/elements/1.1/", 'xmlns:atom'=>"http://www.w3.org/2005/Atom", 'xmlns:sy'=>"http://purl.org/rss/1.0/modules/syndication/", 'xmlns:slash'=>"http://purl.org/rss/1.0/modules/slash/" do
 		xml.channel do
 			xml.title @title
-			xml.link category_url( params[:id], params.merge( format: 'html' ) )
+			xml.link articles_url( params[:id], params.merge( format: 'html' ) )
 			xml.description @subtitle
 			# xml.lastBuildDate Time.now
 			xml.language "en-US"
@@ -18,13 +18,13 @@ if (request.user_agent || '').include?('Feedly/')
 				end
 			end
 
-			xml.tag!( 'atom:link', href: category_url( params[:id], params.merge( format: 'atom' ) ), rel: 'self', type: 'application/rss+xml' )
+			xml.tag!( 'atom:link', href: articles_url( params[:id], params.merge( format: 'atom' ) ), rel: 'self', type: 'application/rss+xml' )
 			# xml.author "Shopswell"
 			if @cover_img.present?
 				xml.image do
 					xml.title @title
 					xml.url @cover_img
-					xml.link category_url( params[:id], params.merge( format: 'html' ) )
+					xml.link articles_url( params[:id], params.merge( format: 'html' ) )
 					# xml.width 0
 					# xml.height 0
 				end
@@ -35,7 +35,7 @@ if (request.user_agent || '').include?('Feedly/')
 			# xml.tag!( 'webfeeds:accentColor', 'A97CB4' )
 			xml.tag!( 'webfeeds:related', layout: 'card', target: 'browser' )
 
-			for result in @results
+			for result in @articles
 				xml.item do
 					xml.title result.title
 					xml.tag!( 'dc:creator' ) do
@@ -57,7 +57,7 @@ if (request.user_agent || '').include?('Feedly/')
 						xml.cdata! (result.description || result.try(:content_preview) || result.try(:description_preview) || result.try(:sanitized_description) || result.try(:sanitized_description) || '').truncate(150)
 					end
 					xml.tag!( 'content:encoded' ) do
-						xml.cdata! render( 'articles/content.html', result: result, args: { upsell: false } )
+						xml.cdata! render( 'content.html', result: result, args: { upsell: false } )
 					end
 
 				end
@@ -71,7 +71,7 @@ else
 	xml.rss :version => "2.0", 'xmlns:content'=>"http://purl.org/rss/1.0/modules/content/", 'xmlns:wfw'=>"http://wellformedweb.org/CommentAPI/", 'xmlns:dc'=>"http://purl.org/dc/elements/1.1/", 'xmlns:atom'=>"http://www.w3.org/2005/Atom", 'xmlns:sy'=>"http://purl.org/rss/1.0/modules/syndication/", 'xmlns:slash'=>"http://purl.org/rss/1.0/modules/slash/" do
 		xml.channel do
 			xml.title @title
-			xml.link category_url( params[:id], params.merge( format: 'html' ) )
+			xml.link articles_url( params[:id], params.merge( format: 'html' ) )
 			xml.description @subtitle
 			# xml.lastBuildDate Time.now
 			xml.language "en-US"
@@ -83,20 +83,20 @@ else
 				end
 			end
 
-			xml.tag!( 'atom:link', href: category_url( params[:id], params.merge( format: 'atom' ) ), rel: 'self', type: 'application/rss+xml' )
+			xml.tag!( 'atom:link', href: articles_url( params[:id], params.merge( format: 'atom' ) ), rel: 'self', type: 'application/rss+xml' )
 			# xml.author "Shopswell"
 			if @cover_img.present?
 				xml.image do
 					xml.title @title
 					# xml.url @cover_img
-					xml.link category_url( params[:id], params.merge( format: 'html' ) )
+					xml.link articles_url( params[:id], params.merge( format: 'html' ) )
 					# xml.width 0
 					# xml.height 0
 				end
 
 			end
 
-			for result in @results
+			for result in @articles
 				xml.item do
 					xml.title result.title
 					xml.tag!( 'dc:creator' ) do
@@ -118,7 +118,7 @@ else
 						xml.cdata! (result.description || result.try(:content_preview) || result.try(:description_preview) || result.try(:sanitized_description) || result.try(:sanitized_description) || '').truncate(150)
 					end
 					xml.tag!( 'content:encoded' ) do
-						xml.cdata! render( 'articles/content.html', result: result, args: {} )
+						xml.cdata! render( 'content.html', result: result, args: {} )
 					end
 
 				end
