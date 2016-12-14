@@ -17,7 +17,7 @@ module SwellMedia
 			@subtitle = @category.try(:description)
 
 
-			@articles = SwellMedia::SearchService.search( SwellMedia::Article, term: @search_term, category: @category, users: @users, tags: @tags )
+			@results = SwellMedia::SearchService.search( SwellMedia::Article, term: @search_term, category: @category, users: @users, tags: @tags )
 			@results = @results.page(params[:page]).per(6)
 
 
