@@ -1,8 +1,6 @@
 module SwellMedia
 	
-	class UserAdminController < ApplicationController
-		before_filter :authenticate_user!
-		layout 'admin'
+	class UserAdminController < AdminController
 
 		def edit
 			@user = SwellMedia.registered_user_class.constantize.friendly.find( params[:id] )

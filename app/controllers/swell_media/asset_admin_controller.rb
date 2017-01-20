@@ -2,13 +2,9 @@
 # TODO 
 
 module SwellMedia
-	class AssetAdminController < ApplicationController
+	class AssetAdminController < AdminController
 
-		before_filter :authenticate_user!
 		before_filter :get_asset, except: [ :create, :empty_trash, :index ]
-
-		layout 'admin'
-
 
 		def create
 			authorize( Asset, :admin_create? )

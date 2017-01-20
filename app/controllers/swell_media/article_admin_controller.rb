@@ -1,12 +1,7 @@
 module SwellMedia
-	class ArticleAdminController < ApplicationController
-
-		before_filter :authenticate_user!
+	class ArticleAdminController < AdminController
 		before_filter :get_article, except: [ :create, :empty_trash, :index ]
-
-		layout 'admin'
-
-
+		
 		def create
 			authorize( Article, :admin_create? )
 			@article = Article.new( article_params )

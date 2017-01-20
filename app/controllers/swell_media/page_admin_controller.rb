@@ -1,11 +1,7 @@
 
 module SwellMedia
-	class PageAdminController < ApplicationController
-		
-		before_filter :authenticate_user!, except: [ :show ]
+	class PageAdminController < AdminController
 		before_filter :get_page, except: [ :create, :empty_trash, :index ]
-
-		layout 'admin'
 
 		def create
 			authorize( Page, :admin_create? )

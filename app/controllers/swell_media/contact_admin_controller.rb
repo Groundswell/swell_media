@@ -1,8 +1,6 @@
 module SwellMedia
-	class ContactAdminController < ApplicationController
-		before_filter :authenticate_user!
+	class ContactAdminController < AdminController
 		before_filter :get_contact, except: [ :create, :empty_trash, :export, :import, :index ]
-		layout 'admin'
 
 		def destroy
 			authorize( Contact, :admin_destroy? )

@@ -1,10 +1,7 @@
 module SwellMedia
-	class CategoryAdminController < ApplicationController
-		before_filter :authenticate_user!, except: [ :show ]
+	class CategoryAdminController < AdminController
+
 		before_filter :get_category, except: [ :create, :empty_trash, :index ]
-
-		layout 'admin'
-
 
 		def create
 			authorize( Category, :admin_create? )

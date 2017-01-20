@@ -3,12 +3,8 @@
 # Pages, blog, and any registrered media classes
 
 module SwellMedia
-	class MediaAdminController < ApplicationController
-		before_filter :authenticate_user!
+	class MediaAdminController < AdminController
 		before_filter :get_media, except: [ :create, :empty_trash, :index ]
-
-		layout 'admin'
-
 
 		def create
 			authorize( Media, :admin_create? )
