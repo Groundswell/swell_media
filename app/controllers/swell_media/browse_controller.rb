@@ -24,7 +24,7 @@ module SwellMedia
 
 			set_page_meta( title: "#{@title} | #{SwellMedia.app_name}", description: @subtitle, avatar: @cover_img )
 
-			# render layout: 'application'
+			render layout: 'swell_media/articles'
 			# render layout: ( SwellMedia.default_layouts['swell_media/categories#show'] || SwellMedia.default_layouts['swell_media/categories'] || 'application' )
 
 		end
