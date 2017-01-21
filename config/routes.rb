@@ -22,7 +22,7 @@ SwellMedia::Engine.routes.draw do
 		delete :empty_trash, on: :collection 
 	end
 
-	resources :categories, only: [:show]
+	resources :browse
 
 	resources :category_admin
 

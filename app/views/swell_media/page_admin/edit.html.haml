@@ -27,7 +27,7 @@
 					.input-group
 						= f.label :slug_pref, 'URL for this page:'
 						%span.input-group-addon
-							http://playswell.com/
+							= SwellMedia.app_host
 						= f.text_field :slug_pref, class: 'form-control', placeholder: @page.slug
 
 				
