@@ -20,7 +20,7 @@ module SwellMedia
 			self.before_render if self.respond_to? :before_render
 
 			begin
-				render "#{@media.class.name.underscore.pluralize}/show", layout: layout
+				render @media.template || "#{@media.class.name.underscore.pluralize}/show", layout: layout
 			rescue ActionView::MissingTemplate
 				render "#{@media.class.name.underscore.pluralize}/show", layout: 'application'
 			end
