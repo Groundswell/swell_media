@@ -37,19 +37,18 @@
 						%a{ href: article_admin_index_path( sort_by: 'title', sort_dir: 'desc' ) }
 							%i.fa.fa-arrow-down
 					%th
-						Publish
-						%a{ href: article_admin_index_path( sort_by: 'publish_at', sort_dir: 'asc' ) }
-							%i.fa.fa-arrow-up
-						%a{ href: article_admin_index_path( sort_by: 'publish_at', sort_dir: 'desc' ) }
-							%i.fa.fa-arrow-down
-					%th
 						Words
 						%a{ href: article_admin_index_path( sort_by: 'cached_word_count', sort_dir: 'asc' ) }
 							%i.fa.fa-arrow-up
 						%a{ href: article_admin_index_path( sort_by: 'cached_word_count', sort_dir: 'desc' ) }
 							%i.fa.fa-arrow-down
+					%th
+						Publish
+						%a{ href: article_admin_index_path( sort_by: 'publish_at', sort_dir: 'asc' ) }
+							%i.fa.fa-arrow-up
+						%a{ href: article_admin_index_path( sort_by: 'publish_at', sort_dir: 'desc' ) }
+							%i.fa.fa-arrow-down
 					%th Status
-					%th Path
 					%th Category
 					%th Tags
 					%th
@@ -60,15 +59,25 @@
 								= image_tag article.avatar, width: 50, class: 'img img-rounded'
 							%td
 								= link_to article.title, edit_article_admin_path( article.id )
+								%br
+								= article.path
 							%td
 								= article.publish_at.to_s( :slashed_time )
 							%td
 								= article.try( :cached_word_count ) || 'N/A'
 							%td
-								.badge{ class: article.status }
-									= article.status
-							%td
-								= article.path
+								- if article.published?
+									.badge{ class: article.status }
+										Live
+								- elsif article.draft?
+									.badge{ class: article.status }
+										Draft
+								- elsif article.active?
+									.badge{ class: 'pending' }
+										Pending
+								- else
+									.badge{ class: article.status }
+										= article.status
 							%td
 								= article.category.try( :name ) || 'None'
 							%td

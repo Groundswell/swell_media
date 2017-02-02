@@ -16,6 +16,10 @@
 	background-color: #EC971F;
 }
 
+.pending.badge{ 
+	background-color: #dd3;
+}
+
 .archive.badge{ 
 	background-color: #aaa;
 }
