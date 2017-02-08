@@ -65,8 +65,18 @@
 							%td
 								= media.try( :cached_word_count ) || 'N/A'
 							%td
-								.badge{ class: media.status }
-									= media.status
+								- if media.published?
+									.badge{ class: media.status }
+										Live
+								- elsif media.draft?
+									.badge{ class: media.status }
+										Draft
+								- elsif media.active?
+									.badge{ class: 'pending' }
+										Pending
+								- else
+									.badge{ class: media.status }
+										= media.status
 							%td
 								= media.path
 							%td
