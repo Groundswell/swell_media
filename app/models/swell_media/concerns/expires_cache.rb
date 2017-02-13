@@ -8,7 +8,7 @@ module SwellMedia
 				before_save do |model|
 					# are there any changed fields which expire the cache?
 					if ( model.changed & (model.class.config_expiring_fields || []) ).present?
-						model.modified_at = Time.now
+						model.modified_at = Time.now if model.respond_to?( :modified_at )
 					end
 				end
 			end
@@ -50,7 +50,7 @@ module SwellMedia
 			end
 
 			def cache_key
-				"ExpiresCache/#{self.class.name}/#{self.id}/#{(self.modified_at || self.updated_at).strftime('%Y%m%d%H%M%S%L')}"
+				"ExpiresCache/#{self.class.name}/#{self.id}/#{(self.try( :modified_at ) || self.updated_at).strftime('%Y%m%d%H%M%S%L')}"
 			end
 
 

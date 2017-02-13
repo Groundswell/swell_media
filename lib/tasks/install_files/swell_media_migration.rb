@@ -78,7 +78,7 @@ class SwellMediaMigration < ActiveRecord::Migration
 			t.string		:title
 			t.string		:subtitle
 			t.text			:avatar
-			t.string		:cover_path
+			t.string		:cover_image
 			t.string		:avatar_caption
 			t.string		:layout
 			t.string		:template				# for future

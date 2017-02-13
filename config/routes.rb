@@ -3,9 +3,6 @@ SwellMedia::Engine.routes.draw do
 
 	resources :admin, only: :index
 
-	resources :api_access_token, only: [:create] do
-		post :info, on: :collection
-	end
 
 	resources :articles, path: 'blog'
 	resources :article_admin, path: 'blog_admin' do
@@ -37,8 +34,6 @@ SwellMedia::Engine.routes.draw do
 		delete :empty_trash, on: :collection 
 	end
 
-	resources :oauth_email_collector, only: [:create, :new]
-
 	resources :page_admin do
 		get :preview, on: :member
 		delete :empty_trash, on: :collection 
@@ -59,7 +54,7 @@ SwellMedia::Engine.routes.draw do
 		get '/logout' => 'sessions#destroy', as: 'logout'
 		put '/check_name' => 'registrations#check_name', as: 'check_name'
 	end
-	devise_for :users, :controllers => { :omniauth_callbacks => 'swell_media/oauth', :registrations => 'swell_media/registrations', :sessions => 'swell_media/sessions', :passwords => 'swell_media/passwords' }
+	#devise_for :users, :controllers => { :omniauth_callbacks => 'swell_media/oauth', :registrations => 'swell_media/registrations', :sessions => 'swell_media/sessions', :passwords => 'swell_media/passwords' }
 
 	get '/privacy', to: 'static#privacy', as: :privacy
 	get '/terms', to: 'static#terms', as: :terms

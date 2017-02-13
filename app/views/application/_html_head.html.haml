@@ -1,11 +1,12 @@
 
 %title
 	= @page_meta[:title]
+
 %meta{charset: "utf-8"}/
 %meta{content: "IE=edge,chrome=1", "http-equiv" => "X-UA-Compatible"}
-%meta{content: @page_meta[:description], name: "description"}
 %meta{content: "width=device-width, initial-scale=1, maximum-scale=1", name: "viewport"}
 
+%meta{content: @page_meta[:description], name: "description"}
 
 %meta{ property: 'og:title', content: @page_meta[:title] }
 %meta{ property: 'og:type', content: @page_meta[:fb_type] }
@@ -14,11 +15,9 @@
 %meta{ property: 'og:description', content: @page_meta[:description] }
 %meta{ property: 'og:image', content: @page_meta[:image] }
 
-- if @page_meta[:video]
-	%meta{ property: 'og:video', content: @page_meta[:video] }
-	%meta{ property: 'og:video:height', content: (@page_meta[:video_height] || 385) }
-	%meta{ property: 'og:video:width', content: (@page_meta[:video_width] || 640) }
-	%meta{ property: 'og:video:type', content: (@page_meta[:video_mime_type] || 'application/x-shockwave-flash') }
+- @page_meta.each do |k, v|
+	%meta{ name: @page_meta[k][:name], content: @page_meta[:content] }
+
 
 
 %meta{ property: 'twitter:title', content: @page_meta[:title] }
