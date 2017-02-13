@@ -29,8 +29,8 @@
 					= f.text_field :subtitle, class: 'form-control'
 
 				.form-group
+					= f.label :slug_pref, 'URL for this article:'
 					.input-group
-						= f.label :slug_pref, 'URL for this article:'
 						%span.input-group-addon
 							= SwellMedia.app_host
 						= f.text_field :slug_pref, class: 'form-control', placeholder: @article.slug
