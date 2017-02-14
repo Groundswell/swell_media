@@ -108,12 +108,26 @@ module SwellMedia
 			end
 
 			return {
-				title: title,
+				page_title: title,
+				title: self.title,
 				description: self.sanitized_description,
 				image: self.avatar,
 				url: self.url,
 				twitter_format: 'summary_large_image',
-				type: 'Article'
+				type: 'Article',
+				og: {
+					"article:published_time" => self.publish_at.iso8601,
+					"article:author" => self.user.to_s
+				},
+				data: {
+					'url' => self.url,
+					'name' => self.title,
+					'description' => self.sanitized_description,
+					'datePublished' => self.publish_at.iso8601,
+					'author' => self.user.to_s,
+					'image' => self.avatar
+				}
+
 			}
 		end
 

@@ -33,7 +33,7 @@ module SwellMedia
 
 		def set_page_meta( args={} )
 			@page_meta = {
-				title: args[:title] || SwellMedia.app_name,
+				title: args[:page_title] || args[:title] || SwellMedia.app_name,
 				description: args[:description] || SwellMedia.app_description,
 
 				og: {
@@ -52,15 +52,7 @@ module SwellMedia
 				@page_meta[:twitter] = @page_meta[:og].merge( { format: 'summary', site: SwellMedia.twitter_handle } )
 			end
 
-			@page_meta[:schema] = {
-				"@context" => "http://schema.org/",
-				"@type" => @page_meta[:type],
-				"name" => @page_meta[:title]
-			}
-
-			@page_meta[:schema] = @page_meta[:schema].merge( @page_meta[:og] )
-
-			@page_meta[:schema] = @page_meta[:schema].deep_merge( @page_meta[:data] ) if @page_meta[:data].present?
+			@page_meta[:schema] = { "@context" => "http://schema.org/", "@type" => "Article" }.deep_merge( @page_meta[:data] ) if @page_meta[:data].present?
 
 		end
 
