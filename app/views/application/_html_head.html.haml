@@ -15,10 +15,6 @@
 %meta{ property: 'og:description', content: @page_meta[:description] }
 %meta{ property: 'og:image', content: @page_meta[:image] }
 
-- @page_meta.each do |k, v|
-	%meta{ name: @page_meta[k][:name], content: @page_meta[:content] }
-
-
 
 %meta{ property: 'twitter:title', content: @page_meta[:title] }
 %meta{ property: 'twitter:card', content: @page_meta[:twitter_format] }

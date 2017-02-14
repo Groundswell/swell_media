@@ -32,23 +32,41 @@ module SwellMedia
 		end
 
 		def set_page_meta( args={} )
-			init_page_meta unless @page_meta.present?
-			@page_meta = @page_meta.merge(args)
+			init_page_meta() unless @page_meta.present?
+
+			@page_meta = @page_meta.deep_merge( args )
+			
+			if SwellMedia.twitter_handle
+				@page_meta[:twitter] = @page_meta[:og].merge( { format: 'summary', site: SwellMedia.twitter_handle } )
+			end
+
+			@page_meta[:schema] = {
+				"@context" => "http://schema.org/",
+				"@type" => @page_meta[:type],
+				"name" => @page_meta[:title]
+			}
+
+			@page_meta[:schema] = @page_meta[:schema].merge( @page_meta[:og] )
+
+			@page_meta[:schema] = @page_meta[:schema].deep_merge( @page_meta[:structured_data] ) if @page_meta[:structured_data].present?
+
 		end
 
-		def init_page_meta
+		def init_page_meta()
 			@page_meta = {
-				:title => SwellMedia.app_name,
-				:description => SwellMedia.app_description,
-				:image => SwellMedia.app_logo,
-				:site_name=> SwellMedia.app_name,
-				:fb_type => 'article', # blog, website,
-				:url => request.url,
-				:twitter_format => 'summary',
-				:twitter_site => SwellMedia.twitter_handle,
-				:og => {},
-				:twitter => {},
+				title: SwellMedia.app_name,
+				description: SwellMedia.app_description,
+
+				og: {
+					title: SwellMedia.app_name,
+					type: 'Article',
+					site_name: SwellMedia.app_name,
+					url: request.url,
+					description: SwellMedia.app_description,
+					image: SwellMedia.app_logo
+				}
 			}
+
 		end
 
 	end
