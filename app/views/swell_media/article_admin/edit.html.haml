@@ -55,7 +55,7 @@
 								%a{ href: '#', data: { toggle: :assetup, for: '#article_cover_image, #article_cover_image_img', asset: { asset_type: 'image', use: 'avatar', status: 'active', parent_obj_id: @article.id, parent_obj_type: @article.class.base_class.name }.to_json, params: { authenticity_token: form_authenticity_token() }.to_json } }
 									%i.fa.fa-upload
 									upload
-							= f.hidden_field :cover_path, class: 'form-control', id: 'article_cover_image'
+							= f.hidden_field :cover_image, class: 'form-control', id: 'article_cover_image'
 							-# = text_field_tag :avatar_text_field, '', class: 'form-control', placeholder: 'Full Path to Image', data: { inputfor: '#article_avatar_asset_url' }
 					- SwellMedia.article_avatars.each do |avatar_name|
 						.col-xs-4
