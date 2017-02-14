@@ -7,13 +7,14 @@ module SwellMedia
 
 			@category = SwellMedia::Category.friendly.find( params[:category_id] ) unless params[:category_id] == 'all' || params[:category_id].blank?
 			@tags = params[:tags] || [params[:tag]] if params[:tag].present? || params[:tags].present?
-			@users = User.friendly.find( params[:author] ) if params[:author].present?
+			@user = User.friendly.find( params[:author] ) if params[:author].present?
 			@type = params[:type] if params[:type].present?
 			@search_term = params[:q]
 
 
 			@title = @category.try(:name)
 			@title ||= "##{@tags.join(' #')}" if @tags.present?
+			@title ||= "By #{@user}" if @user.present?
 			@title ||= "New from #{SwellMedia.app_name}"
 			@cover_img = @category.try(:cover_image)
 			@subtitle = @category.try(:description)
