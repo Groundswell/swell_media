@@ -113,7 +113,7 @@ module SwellMedia
 				image: self.avatar,
 				url: self.url,
 				twitter_format: 'summary_large_image',
-				fb_type: 'article'
+				type: 'Article'
 			}
 		end
 

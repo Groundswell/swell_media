@@ -32,7 +32,19 @@ module SwellMedia
 		end
 
 		def set_page_meta( args={} )
-			init_page_meta() unless @page_meta.present?
+			@page_meta = {
+				title: args[:title] || SwellMedia.app_name,
+				description: args[:description] || SwellMedia.app_description,
+
+				og: {
+					title: args[:title] || SwellMedia.app_name,
+					type: args[:type] || 'Article',
+					site_name: SwellMedia.app_name,
+					url: request.url,
+					description: args[:description] || SwellMedia.app_description,
+					image: args[:image] || SwellMedia.app_logo
+				}
+			}
 
 			@page_meta = @page_meta.deep_merge( args )
 			
@@ -48,26 +60,10 @@ module SwellMedia
 
 			@page_meta[:schema] = @page_meta[:schema].merge( @page_meta[:og] )
 
-			@page_meta[:schema] = @page_meta[:schema].deep_merge( @page_meta[:structured_data] ) if @page_meta[:structured_data].present?
+			@page_meta[:schema] = @page_meta[:schema].deep_merge( @page_meta[:data] ) if @page_meta[:data].present?
 
 		end
 
-		def init_page_meta()
-			@page_meta = {
-				title: SwellMedia.app_name,
-				description: SwellMedia.app_description,
-
-				og: {
-					title: SwellMedia.app_name,
-					type: 'Article',
-					site_name: SwellMedia.app_name,
-					url: request.url,
-					description: SwellMedia.app_description,
-					image: SwellMedia.app_logo
-				}
-			}
-
-		end
 
 	end
 
