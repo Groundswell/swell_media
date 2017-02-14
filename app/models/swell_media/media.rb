@@ -9,7 +9,7 @@ module SwellMedia
 
 		mounted_at '/'
 
-		expires_cache :user_id, :managed_by_id, :public_id, :category_id, :avatar_asset_id, :parent_id, :lft, :rgt, :type, :sub_type, :title, :subtitle, :avatar, :cover_path, :avatar_caption, :layout, :template, :description, :content, :slug, :is_commentable, :is_sticky, :show_title, :modified_at, :keywords, :duration, :price, :status, :availability, :publish_at, :tags
+		expires_cache :user_id, :managed_by_id, :public_id, :category_id, :avatar_asset_id, :parent_id, :lft, :rgt, :type, :sub_type, :title, :subtitle, :avatar, :cover_image, :avatar_caption, :layout, :template, :description, :content, :slug, :is_commentable, :is_sticky, :show_title, :modified_at, :keywords, :duration, :price, :status, :availability, :publish_at, :tags
 
 
 		enum status: { 'draft' => 0, 'active' => 1, 'archive' => 2, 'trash' => 3 }
