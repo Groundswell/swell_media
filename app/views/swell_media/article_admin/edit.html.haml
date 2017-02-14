@@ -80,7 +80,7 @@
 
 			.col-xs-4
 				.well
-					-#.form-group
+					.form-group
 						= f.label :user_id, 'Author'
 						= f.collection_select :user_id, SwellMedia.registered_user_class.constantize.where( "role > 1" ), :id, :name, {}, class: 'form-control'
 					.form-group

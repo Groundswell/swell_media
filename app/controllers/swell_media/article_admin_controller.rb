@@ -6,7 +6,7 @@ module SwellMedia
 			authorize( Article, :admin_create? )
 			@article = Article.new( article_params )
 			@article.publish_at ||= Time.zone.now
-			@article.user = current_user
+			@article.user ||= current_user
 			@article.status = 'draft'
 
 			if params[:article][:category_name].present?
