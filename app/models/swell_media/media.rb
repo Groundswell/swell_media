@@ -114,7 +114,7 @@ module SwellMedia
 				image: self.avatar,
 				url: self.url,
 				twitter_format: 'summary_large_image',
-				type: 'Article',
+				type: 'article',
 				og: {
 					"article:published_time" => self.publish_at.iso8601,
 					"article:author" => self.user.to_s

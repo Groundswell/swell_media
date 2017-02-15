@@ -38,7 +38,7 @@ module SwellMedia
 
 				og: {
 					title: args[:title] || SwellMedia.app_name,
-					type: args[:type] || 'Article',
+					type: args[:type] || 'article',
 					site_name: SwellMedia.app_name,
 					url: request.url,
 					description: args[:description] || SwellMedia.app_description,
@@ -52,7 +52,7 @@ module SwellMedia
 				@page_meta[:twitter] = @page_meta[:og].merge( { format: 'summary', site: SwellMedia.twitter_handle } )
 			end
 
-			@page_meta[:schema] = { "@context" => "http://schema.org/", "@type" => "Article" }.deep_merge( @page_meta[:data] ) if @page_meta[:data].present?
+			@page_meta[:schema] = { "@context" => "http://schema.org/", "@type" => "article" }.deep_merge( @page_meta[:data] ) if @page_meta[:data].present?
 
 		end
 
