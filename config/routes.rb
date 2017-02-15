@@ -23,7 +23,9 @@ SwellMedia::Engine.routes.draw do
 
 	resources :category_admin
 
-	resources :contacts
+	resources :contacts do 	
+		get :thanks, on: :collection
+	end
 	resources :contact_admin do
 		post :import, on: :collection
 		get :export, on: :collection
@@ -32,6 +34,10 @@ SwellMedia::Engine.routes.draw do
 	resources :media_admin do
 		get :preview, on: :member
 		delete :empty_trash, on: :collection 
+	end
+
+	resources :optins do 	
+		get :thanks, on: :collection
 	end
 
 	resources :page_admin do

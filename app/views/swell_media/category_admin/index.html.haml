@@ -7,6 +7,7 @@
 				%li
 					%strong
 						Category Admin
+						= "(#{pluralize @categories.total_count, 'Category'})"
 		.col-xs-2
 			%a.btn.btn-success{ data: { toggle: :modal, target: '#new_category' } }
 				%i.fa.fa-plus-square

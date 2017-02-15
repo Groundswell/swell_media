@@ -4,7 +4,7 @@ module SwellMedia
 		skip_before_filter :verify_authenticity_token, :only => [ :create ]
 
 		def create
-			@contact = Contact.new( contact_params )
+			@contact = ContactUs.new( contact_params )
 
 			if @contact.save
 				
@@ -14,9 +14,7 @@ module SwellMedia
 					mail_api = Gibbon::API.new
 					mail_api.lists.subscribe( { id: ENV['MAILCHIMP_DEFAULT_LIST_ID'], email: { email: email }, double_optin: true } )
 				end
-
-				set_flash 'Thanks!'
-				redirect_to '/'
+				redirect_to thanks_contacts_path
 			else
 				set_flash 'There was a problem...', :danger, @contact
 				redirect_to :back
@@ -25,20 +23,14 @@ module SwellMedia
 
 
 		def new
-			@contact = Contact.new	
-			set_page_meta title: 'Contact'
-
+			set_page_meta title: 'Contact Us'
 			render layout: ( SwellMedia.default_layouts['swell_media/contacts#new'] || SwellMedia.default_layouts['swell_media/contacts'] || 'application' )
 		end
 
 
 		private
 			def contact_params
-				if params[:contact].present?
-					params.require( :contact ).permit( :email, :subject, :message, :type )
-				else
-					return { email: params[:email], subject: params[:subject], message: params[:message], type: params[:type] }
-				end
+				params.require( :contact_us ).permit( :email, :subject, :message, :optin )
 			end
 
 	end

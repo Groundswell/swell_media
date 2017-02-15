@@ -10,6 +10,7 @@
 				%li
 					%strong
 						Asset Admin
+						= "(#{pluralize @assets.total_count, 'Asset'})"
 
 		.col-xs-2
 			%a.btn.btn-success{ data: { toggle: :modal, target: '#new_asset' } }

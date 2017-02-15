@@ -49,7 +49,6 @@ module SwellMedia
 
 
 		def index
-			authorize( Contact, :admin? )
 			
 			sort_by = params[:sort_by] || 'created_at'
 			sort_dir = params[:sort_dir] || 'desc'
@@ -67,8 +66,6 @@ module SwellMedia
 			if params[:q].present?
 				@contacts = @contacts.where( "email like :q", q: "'%#{params[:q].downcase}'%" )
 			end
-
-			@contact_count = @contacts.size
 
 			@contacts = @contacts.page( params[:page] )
 		end
@@ -93,7 +90,7 @@ module SwellMedia
 
 			def contact_params
 
-				params.require( :contact ).permit( :status )
+				params.require( :contact_us ).permit( :status )
 
 			end
 

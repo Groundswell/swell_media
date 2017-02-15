@@ -10,6 +10,7 @@
 				%li
 					%strong
 						Blog Admin
+						= "(#{pluralize @articles.total_count, 'Article'})"
 
 		.col-xs-2
 			%a.btn.btn-success{ data: { toggle: :modal, target: '#new_article' } }
@@ -50,7 +51,7 @@
 							%i.fa.fa-arrow-up
 						%a{ href: article_admin_index_path( sort_by: 'cached_word_count', sort_dir: 'desc' ) }
 							%i.fa.fa-arrow-down
-							
+
 					%th Status
 					%th Category
 					%th Tags
