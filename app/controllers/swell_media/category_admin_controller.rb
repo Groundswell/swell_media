@@ -4,7 +4,6 @@ module SwellMedia
 		before_filter :get_category, except: [ :create, :empty_trash, :index ]
 
 		def create
-			authorize( Category, :admin_create? )
 			@category = Category.new( category_params )
 			@category.user_id = current_user.id
 
@@ -18,7 +17,6 @@ module SwellMedia
 		end
 
 		def destroy
-			authorize( @category, :admin_destroy? )
 			if @category.trash?
 				@category.destroy
 			else
@@ -29,12 +27,11 @@ module SwellMedia
 		end
 
 		def edit
-			authorize( @category, :admin_edit? )
+
 		end
 
 		def index
-			authorize( Category, :admin? )
-			
+		
 			sort_by = params[:sort_by] || 'created_at'
 			sort_dir = params[:sort_dir] || 'desc'
 
@@ -52,9 +49,8 @@ module SwellMedia
 		end
 
 		def update
-			authorize( @category, :admin_update? )
 			@category.attributes = category_params
-
+			
 			if @category.save
 				set_flash 'Category Updated'
 				redirect_to edit_category_admin_path( id: @category.id )
@@ -67,7 +63,7 @@ module SwellMedia
 
 		private
 			def category_params
-				params.require( :category ).permit( :name, :display, :slug, :parent_id, :description, :avatar, :status, :type, :seq, :cover_image ) # todo
+				params.require( :category ).permit( :name, :display, :slug, :parent_id, :description, :avatar, :status, :seq, :cover_image ) # todo
 			end
 
 			def get_category

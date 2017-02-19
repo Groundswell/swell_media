@@ -4,7 +4,7 @@ SwellMedia::Engine.routes.draw do
 	resources :admin, only: :index
 
 
-	resources :articles, path: 'blog'
+	resources :articles, path: SwellMedia.article_path
 	resources :article_admin, path: 'blog_admin' do
 		get :preview, on: :member
 		delete :empty_trash, on: :collection 

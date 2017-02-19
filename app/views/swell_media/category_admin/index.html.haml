@@ -17,7 +17,8 @@
 			%table.table
 				%thead
 					%th
-					%th URL
+					%th Slug
+					%th Type
 					%th Status
 					%th
 				%tbody
@@ -27,7 +28,8 @@
 								= link_to category.name, edit_category_admin_path( category.id )
 							%td
 								= category.slug
-
+							%td
+								= category.type
 							%td
 								.badge{ class: category.status }
 									= category.status

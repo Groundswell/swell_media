@@ -10,7 +10,7 @@ module SwellMedia
 			@article.status = 'draft'
 
 			if params[:article][:category_name].present?
-				@article.category = SwellMedia::Category.where( name: params[:article][:category_name] ).first_or_create( status: 'active' )
+				@article.category = SwellMedia::ArticleCategory.where( name: params[:article][:category_name] ).first_or_create( status: 'active' )
 			end
 
 			if @article.save
@@ -103,7 +103,7 @@ module SwellMedia
 			# end
 
 			if params[:article][:category_name].present?
-				@article.category = SwellMedia::Category.where( name: params[:article][:category_name] ).first_or_create( status: 'active' )
+				@article.category = SwellMedia::ArticleCategory.where( name: params[:article][:category_name] ).first_or_create( status: 'active' )
 			end
 
 			if @article.save
