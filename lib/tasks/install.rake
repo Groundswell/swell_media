@@ -20,6 +20,7 @@ namespace :swell_media do
 
 		FileUtils::mkdir_p( File.join( Rails.root, 'app/views/swell_media/static/' ) )
 		FileUtils::mkdir_p( File.join( Rails.root, 'app/views/layouts/swell_media/' ) )
+		FileUtils::mkdir_p( File.join( Rails.root, 'app/controllers/swell_media/' ) )
 		FileUtils::mkdir_p( File.join( Rails.root, 'db/migrate/' ) )
 
 		files.each do |filename, path|

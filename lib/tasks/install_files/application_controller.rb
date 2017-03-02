@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
 
 	helper SwellMedia::Engine.helpers
 
-	before_filter :init_page_meta
+	before_filter :set_page_meta
 
 
 end
