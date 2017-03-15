@@ -17,12 +17,13 @@ module SwellMedia
 
 			set_page_meta( @media.page_meta )
 
+
 			self.before_render if self.respond_to? :before_render
 
 			begin
 				render @media.template || "#{@media.class.name.underscore.pluralize}/show", layout: layout
 			rescue ActionView::MissingTemplate
-				render "#{@media.class.name.underscore.pluralize}/show", layout: 'application'
+			 	render @media.template || "#{@media.class.name.underscore.pluralize}/show", layout: 'application'
 			end
 
 			self.after_render if self.respond_to? :after_render
