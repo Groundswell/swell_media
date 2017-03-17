@@ -16,7 +16,7 @@ module SwellMedia
 
 
 			if @asset.save
-				@assest.parent_obj.try(:touch)
+				@asset.parent_obj.try(:touch)
 
 				set_flash 'Asset Created'
 				redirect_to edit_asset_admin_path( @asset )
@@ -30,7 +30,7 @@ module SwellMedia
 		def destroy
 			authorize( Asset, :admin_destroy? )
 			@asset.destroy
-			@assest.parent_obj.try(:touch)
+			@asset.parent_obj.try(:touch)
 			set_flash 'Asset Deleted'
 			redirect_to :back
 		end

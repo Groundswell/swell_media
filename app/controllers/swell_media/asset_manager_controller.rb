@@ -51,7 +51,7 @@ module SwellMedia
 				redirect_to :back
 
 			else
-				@assest.parent_obj.try(:touch)
+				@asset.parent_obj.try(:touch)
 
 				if params[:response] == 'file'
 
@@ -92,7 +92,7 @@ module SwellMedia
 			authorize( @asset )
 
 			@asset.update( status: 'trash' )
-			@assest.parent_obj.try(:touch)
+			@asset.parent_obj.try(:touch)
 
 			redirect_to :back
 		end
