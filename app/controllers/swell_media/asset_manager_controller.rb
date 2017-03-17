@@ -50,34 +50,38 @@ module SwellMedia
 				set_flash 'Unable to Save', :error
 				redirect_to :back
 
-			elsif params[:response] == 'file'
-
-				redirect_to @asset.url
-
-			elsif params[:response] == 'json'
-
-				render json: { link: @asset.url }
-
-			elsif params[:response] == 'url'
-
-				render text: @asset.url, layout: nil
-
-			elsif request.env['HTTP_REFERER']
-
-				begin
-					uri =  URI.parse(request.env['HTTP_REFERER'])
-					new_query_ar = URI.decode_www_form(uri.query || '') << ["asset_url", @asset.url]
-					uri.query = URI.encode_www_form(new_query_ar)
-
-					redirect_to uri.to_s
-				rescue
-					redirect_to :back
-				end
-
 			else
+				@assest.parent_obj.try(:touch)
 
-				redirect_to :back
+				if params[:response] == 'file'
 
+					redirect_to @asset.url
+
+				elsif params[:response] == 'json'
+
+					render json: { link: @asset.url }
+
+				elsif params[:response] == 'url'
+
+					render text: @asset.url, layout: nil
+
+				elsif request.env['HTTP_REFERER']
+
+					begin
+						uri =  URI.parse(request.env['HTTP_REFERER'])
+						new_query_ar = URI.decode_www_form(uri.query || '') << ["asset_url", @asset.url]
+						uri.query = URI.encode_www_form(new_query_ar)
+
+						redirect_to uri.to_s
+					rescue
+						redirect_to :back
+					end
+
+				else
+
+					redirect_to :back
+
+				end
 			end
 
 
@@ -88,6 +92,7 @@ module SwellMedia
 			authorize( @asset )
 
 			@asset.update( status: 'trash' )
+			@assest.parent_obj.try(:touch)
 
 			redirect_to :back
 		end

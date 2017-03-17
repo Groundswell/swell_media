@@ -1,5 +1,5 @@
 
-# TODO 
+# TODO
 
 module SwellMedia
 	class AssetAdminController < AdminController
@@ -16,6 +16,8 @@ module SwellMedia
 
 
 			if @asset.save
+				@assest.parent_obj.try(:touch)
+
 				set_flash 'Asset Created'
 				redirect_to edit_asset_admin_path( @asset )
 			else
@@ -28,6 +30,7 @@ module SwellMedia
 		def destroy
 			authorize( Asset, :admin_destroy? )
 			@asset.destroy
+			@assest.parent_obj.try(:touch)
 			set_flash 'Asset Deleted'
 			redirect_to :back
 		end
@@ -73,7 +76,7 @@ module SwellMedia
 
 			layout = @media.class.name.underscore.pluralize
 			layout = @media.layout if @media.layout.present?
-			
+
 			render "swell_media/assets/show", layout: layout
 		end
 
@@ -91,7 +94,7 @@ module SwellMedia
 				set_flash 'Asset could not be Updated', :error, @asset
 				render :edit
 			end
-			
+
 		end
 
 
