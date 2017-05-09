@@ -65,7 +65,7 @@ module SwellMedia
 			authorize( @page, :admin_preview? )
 			@media = @page
 			layout = @media.slug == 'homepage' ? 'swell_media/homepage' : "#{@media.class.name.underscore.pluralize}"
-			render "swell_media/pages/show"
+			render "swell_media/pages/show", layout: layout
 		end
 
 
