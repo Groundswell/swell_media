@@ -21,7 +21,9 @@ module SwellMedia
 
 
 
-
+		def title
+			self.name
+		end
 
 		def to_s
 			self.name
