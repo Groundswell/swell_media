@@ -37,7 +37,8 @@ SwellMedia::Engine.routes.draw do
 	end
 
 	resources :optins do 	
-		get :thanks, on: :collection
+		# get :thanks, on: :collection
+		get :thank_you, on: :member, path: 'thank-you'
 	end
 
 	resources :page_admin do

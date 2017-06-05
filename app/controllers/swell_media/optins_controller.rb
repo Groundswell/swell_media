@@ -14,12 +14,16 @@ module SwellMedia
 
 				end
 
-				redirect_to thanks_optins_path
+				redirect_to thank_you_optin_path( @optin.code )
 			else
 				set_flash "Couldn't sign up #{@optin.email}", :error, @optin
 				redirect_to :back
 				return false
 			end
+		end
+
+		def thank_you
+			@optin = SwellMedia::Optin.find_by( code: params[:id] )
 		end
 
 
