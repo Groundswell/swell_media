@@ -88,19 +88,11 @@ module SwellMedia
 		def update
 			authorize( @article, :admin_update? )
 			
-			@article.slug = nil if params[:update_slug].present? && params[:article][:title] != @article.title
+			@article.slug = nil if ( params[:article][:title] != @article.title ) || ( params[:article][:slug_pref].present? )
 
 			@article.attributes = article_params
 			@article.avatar_urls = params[:article][:avatar_urls] if params[:article].present? && params[:article][:avatar_urls].present?
 
-			# if params[:publish].present? || @article.draft?
-			#
-			# 	@version = @article.media_versions.find( id: params[:current_draft_id]  )
-			# 	@article.attributes = @version.versioned_attributes
-			#
-			# 	@version.published! if params[:publish].present?
-			#
-			# end
 
 			if params[:article][:category_name].present?
 				@article.category = SwellMedia::ArticleCategory.where( name: params[:article][:category_name] ).first_or_create( status: 'active' )

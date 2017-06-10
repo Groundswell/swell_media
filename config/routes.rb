@@ -31,13 +31,15 @@ SwellMedia::Engine.routes.draw do
 		get :export, on: :collection
 	end
 
+	resources :lead_offers, path: 'get'
+	resources :lead_offer_admin
+
 	resources :media_admin do
 		get :preview, on: :member
 		delete :empty_trash, on: :collection 
 	end
 
 	resources :optins do 	
-		# get :thanks, on: :collection
 		get :thank_you, on: :member, path: 'thank-you'
 	end
 

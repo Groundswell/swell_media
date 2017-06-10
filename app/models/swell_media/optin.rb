@@ -2,7 +2,7 @@ module SwellMedia
 	class Optin < SwellMedia::Contact
 		before_create :generate_code
 
-
+		attr_accessor :offer_id
 
 		private
 			def generate_code

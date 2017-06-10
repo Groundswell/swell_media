@@ -1,0 +1,11 @@
+!!!strict
+%head
+	%meta{ content: "text/html; charset=UTF-8", 'http-equiv' => "Content-Type" }
+%body
+	%p
+		= raw @offer.email_msg
+
+	%p
+		You can get your
+		= @offer.item_name
+		here.

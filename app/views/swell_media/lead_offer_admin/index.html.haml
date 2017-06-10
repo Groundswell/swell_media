@@ -1,0 +1,66 @@
+
+
+.container-fluid
+	.row
+		.col-xs-10
+			%ul.breadcrumb
+				%li
+					= link_to 'Admin', admin_index_path
+				%li
+					%strong
+						Lead Offer Admin
+						= "(#{pluralize @offers.total_count, 'Offer'})"
+
+		.col-xs-2
+			%a.btn.btn-success{ data: { toggle: :modal, target: '#new_offer' } }
+				%i.fa.fa-plus-square
+				New
+	.row
+		.col-xs-6
+			= raw paginate @offers
+	.row
+		.col-xs-12
+			%table.table
+				%thead
+					%th
+						Title
+						%a{ href: lead_offer_admin_index_path( sort_by: 'title', sort_dir: 'asc' ) }
+							%i.fa.fa-arrow-up
+						%a{ href: lead_offer_admin_index_path( sort_by: 'title', sort_dir: 'desc' ) }
+							%i.fa.fa-arrow-down
+
+					%th Status
+					%th
+				%tbody
+					- @offers.each do |offer|
+						%tr
+							%td
+								= link_to offer.title, edit_lead_offer_admin_path( offer.id )
+							%td
+								- if offer.active?
+									.badge{ class: 'published' }
+										Active
+								- elsif offer.draft?
+									.badge{ class: offer.status }
+										Draft
+								- else
+									.badge{ class: offer.status }
+										= offer.status
+							%td
+								.btn-group
+									%button.btn.btn-mini.btn-default.dropdown-toggle{ data: { toggle: :dropdown } }
+										%i.fa.fa-cog
+										%b.caret
+									%ul.dropdown-menu
+										%li
+											%a{ href: edit_lead_offer_admin_path( offer.id ) }
+												%i.fa.fa-pencil
+												Edit
+										%li.divider
+										%li
+											%a{ href: lead_offer_admin_path( offer ), data: { method: 'delete', confirm: 'Are you sure?' } }
+												%i.fa.fa-trash-o
+												Delete!
+
+
+= render 'new_modal'

@@ -84,7 +84,7 @@ module SwellMedia
 		def update
 			authorize( @media, :admin_update? )
 			
-			@media.slug = nil if params[:update_slug].present? && params[:media][:title] != @media.title
+			@media.slug = nil if params[:media][:title] != @media.title || params[:media][:slug_pref].present?
 
 			@media.attributes = media_params
 

@@ -10,6 +10,10 @@
 
 		%h1
 			Thanks for signing up!
+		
+		- if @offer_optin.present?
+			%p
+				= raw @offer_optin.lead_offer.thank_you_msg
 		%p
 			Be sure to confirm your email (please check your spam, social, and update folders). We'll keep you in the loop with product updates and discounts as we get them.
 
