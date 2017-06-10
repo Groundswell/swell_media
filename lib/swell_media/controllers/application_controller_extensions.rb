@@ -31,6 +31,14 @@ module SwellMedia
 			end
 		end
 
+		def add_page_event_data( args={} )
+
+			@page_event_data ||= []
+
+			@page_event_data << args
+
+		end
+
 		def set_page_meta( args={} )
 
 			type = args[:type] || 'Article'
@@ -50,7 +58,7 @@ module SwellMedia
 			}
 
 			@page_meta = @page_meta.deep_merge( args )
-			
+
 			if SwellMedia.twitter_handle
 				@page_meta[:twitter] = @page_meta[:og].merge( { format: 'summary', site: SwellMedia.twitter_handle } )
 			end
