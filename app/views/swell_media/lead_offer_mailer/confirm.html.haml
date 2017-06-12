@@ -10,5 +10,5 @@
 			You can get your
 			= @offer.item_name
 			here:
-			%a{ href: @offer.download_url }
-				= @offer.download_url
+			%a{ href: accept_lead_offer_path( id: @offer_optin.optin.code ) }
+				= accept_lead_offer_path( id: @offer_optin.optin.code )

@@ -31,7 +31,10 @@ SwellMedia::Engine.routes.draw do
 		get :export, on: :collection
 	end
 
-	resources :lead_offers, path: 'get'
+	resources :lead_offers, path: 'get' do 
+		get :accept, on: :member
+	end
+
 	resources :lead_offer_admin
 
 	resources :media_admin do
