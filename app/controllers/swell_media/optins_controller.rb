@@ -10,13 +10,13 @@ module SwellMedia
 					list_id = ENV['MAILCHIMP_DEFAULT_LIST_ID']
 					list_id ||= gibbon.lists.retrieve(params: {"fields": "lists.id"}).body['lists'].first['id']
 
-					#gibbon.lists( list_id ).members.create( body: { email_address: @optin.email, status: "pending", merge_fields: { NAME: @optin.name } } )
+					gibbon.lists( list_id ).members.create( body: { email_address: @optin.email, status: "pending", merge_fields: { NAME: @optin.name } } )
 
 				end
 
 				if @offer = LeadOffer.friendly.find( optin_params[:offer_id] )
-					LeadOfferOptin.create( optin: @optin, lead_offer: @offer )
-					# send offer email
+					@offer_optin = LeadOfferOptin.create( optin: @optin, lead_offer: @offer )
+					SwellMedia::LeadOfferMailer.confirm( @offer_optin ).deliver
 				end
 
 				redirect_to thank_you_optin_path( @optin.code )

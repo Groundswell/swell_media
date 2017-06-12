@@ -55,7 +55,7 @@ module SwellMedia
 
 		private
 			def offer_params
-				params.require( :lead_offer ).permit( :title, :slug_pref, :description, :status, :avatar, :avatar_asset_url, :cover_image  )
+				params.require( :lead_offer ).permit( :title, :slug_pref, :description, :status, :avatar, :avatar_asset_url, :cover_image, :item_name, :submit_label, :thank_you_msg, :email_subject, :email_msg, :download_url  )
 			end
 
 			def get_offer
