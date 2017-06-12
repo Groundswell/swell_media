@@ -5,7 +5,10 @@
 	%p
 		= raw @offer.email_msg
 
-	%p
-		You can get your
-		= @offer.item_name
-		here.
+	- if @offer.download_url.present?
+		%p
+			You can get your
+			= @offer.item_name
+			here:
+			%a{ href: @offer.download_url }
+				= @offer.download_url
