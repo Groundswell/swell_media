@@ -4,7 +4,7 @@ module SwellMedia
 
 		def accept
 			# ok, breaking the rules here just cause I don't want to create another controller/routes
-			# for offer_optins. This is really getting an optin, marking it, and sending along the 
+			# for offer_optins. This is really getting an optin, marking it, and sending along the
 			# download.
 
 			#start by finding the optin so we can leverage objuscated codes
@@ -12,8 +12,8 @@ module SwellMedia
 
 			@offer_optin = LeadOfferOptin.where( optin_id: optin.id ).last
 			@offer_optin.redeemed!
-			
-			redirect_to @offer_optin.offer.download_url
+
+			redirect_to @offer_optin.lead_offer.download_url
 		end
 
 		def show
