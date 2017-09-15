@@ -9,6 +9,12 @@ module SwellMedia
 			results = results.with_all_tags( query[:tags] ) if query[:tags].present?
 			results = results.where( user: ( query[:users] || query[:user] ) ) if ( query[:users] || query[:user] ).present?
 
+			if query[:not].present?
+
+				results = results.without_all_tags( query[:not][:tags] ) if query[:not][:tags].present?
+
+			end
+
 			if query[:term].present?
 				search_array = query[:term].downcase.gsub(/[^\sa-z0-9]/, '').split(' ').select{ |str| str.strip.present? }
 				results = results.where( "regexp_split_to_array(lower(title), E'\\\\s+') && array['#{search_array.join("','")}']" ).order("( SELECT COUNT(*) FROM ( SELECT UNNEST( regexp_split_to_array(lower(title), E'\\\\s+' ) ) INTERSECT SELECT UNNEST( array['#{search_array.join("','")}'] ) ) intersect_elements ) DESC")
