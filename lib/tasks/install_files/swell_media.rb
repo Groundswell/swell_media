@@ -10,6 +10,7 @@ SwellMedia.configure do |config|
 
 	# config.encryption_secret = 'fdty45u654jtyredhgr4u654etrhdht54eu6e5hdrt5'
 
+	# config.tag_manager_code = nil
 	# config.google_analytics_code = nil
 	# config.google_analytics_site = 'localhost'
 
