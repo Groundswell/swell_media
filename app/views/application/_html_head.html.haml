@@ -10,7 +10,7 @@
 
 %meta{ property: 'og:title', content: @page_meta[:title] }
 %meta{ property: 'og:type', content: @page_meta[:fb_type] }
-%meta{ property: 'og:site_name', content: @page_meta[:site_name] }
+%meta{ property: 'og:site_name', content: @page_meta[:site_name] || ( @page_meta[:og] || {} )[:site_name] }
 %meta{ property: 'og:url', content: @page_meta[:url] }
 %meta{ property: 'og:description', content: @page_meta[:description] }
 %meta{ property: 'og:image', content: @page_meta[:image] }
