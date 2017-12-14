@@ -7,6 +7,10 @@
 
 */
 
+.well.white-well {
+	background: #fff;
+}
+
 .table-light {
 	background: #fff;
 }
