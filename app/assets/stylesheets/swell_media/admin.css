@@ -7,23 +7,30 @@
 
 */
 
+.table-light {
+	background: #fff;
+}
 
-.active.badge{ 
+.table-light>thead {
+	background: #f8f8f8
+}
+
+.active.badge{
 	background-color: #5a5;
 }
 
-.draft.badge{ 
+.draft.badge{
 	background-color: #EC971F;
 }
 
-.pending.badge{ 
+.pending.badge{
 	background-color: #dd3;
 }
 
-.archive.badge{ 
+.archive.badge{
 	background-color: #aaa;
 }
 
-.trash.badge{ 
+.trash.badge{
 	background-color: #a55;
 }
