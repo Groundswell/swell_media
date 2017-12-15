@@ -41,8 +41,10 @@
 
 .unfulfilled.badge{
 	background-color: #ffea8a;
+	color: #666;
 }
 
 .placed.badge {
 	background-color: #ffc58b;
+	color: #666;
 }
