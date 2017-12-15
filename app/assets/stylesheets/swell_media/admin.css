@@ -7,23 +7,44 @@
 
 */
 
+.well.white-well {
+	background: #fff;
+}
 
-.active.badge{ 
+.table-light {
+	background: #fff;
+}
+
+.table-light>thead {
+	background: #f8f8f8
+}
+
+.active.badge{
 	background-color: #5a5;
 }
 
-.draft.badge{ 
+.draft.badge{
 	background-color: #EC971F;
 }
 
-.pending.badge{ 
+.pending.badge{
 	background-color: #dd3;
 }
 
-.archive.badge{ 
+.archive.badge{
 	background-color: #aaa;
 }
 
-.trash.badge{ 
+.trash.badge{
 	background-color: #a55;
+}
+
+.unfulfilled.badge{
+	background-color: #ffea8a;
+	color: #666;
+}
+
+.placed.badge {
+	background-color: #ffc58b;
+	color: #666;
 }
