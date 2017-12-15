@@ -1,6 +1,6 @@
 module SwellMedia
 
-	class Asset < ActiveRecord::Base
+	class Asset < ApplicationRecord
 		# this class is for externally hosted (generally media) assets....
 		# e.g. photos, video, audio files, web links, etc...
 		# intended to be used with CarrierWave / S3 

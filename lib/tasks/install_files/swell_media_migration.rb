@@ -1,4 +1,4 @@
-class SwellMediaMigration < ActiveRecord::Migration
+class SwellMediaMigration < ActiveRecord::Migration[5.1]
 	# V4.0
 	
 	def change

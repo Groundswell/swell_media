@@ -9,8 +9,6 @@ require 'jquery-ui-rails'
 require 'kaminari'
 require 'pundit'
 require 'swell_media/controllers/application_controller_extensions'
-require 'fb_graph'
-require 'staccato'
 
 module SwellMedia
 

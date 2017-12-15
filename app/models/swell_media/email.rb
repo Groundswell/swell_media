@@ -1,6 +1,6 @@
 module SwellMedia
 
-	class Email < ActiveRecord::Base
+	class Email < ApplicationRecord
 		self.table_name = 'emails'
 
 		enum status: { 'failed' => -1, 'pending' => 0, 'confirmed' => 1 }

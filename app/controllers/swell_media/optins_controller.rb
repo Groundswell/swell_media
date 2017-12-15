@@ -12,7 +12,7 @@ module SwellMedia
 				redirect_to thank_you_optin_path( @optin.code )
 			else
 				set_flash "Couldn't sign up #{@optin.email}", :error, @optin
-				redirect_to :back
+				redirect_back( fallback_location: root_path )
 				return false
 			end
 		end

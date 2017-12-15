@@ -1,6 +1,6 @@
 module SwellMedia
 
-	class MediaVersion < ActiveRecord::Base
+	class MediaVersion < ApplicationRecord
 		self.table_name = 'media_versions'
 
 		enum status: { 'draft' => 0, 'published' => 1, 'archive' => 2, 'trash' => 3 }

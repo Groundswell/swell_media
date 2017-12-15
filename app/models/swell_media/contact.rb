@@ -1,6 +1,6 @@
 module SwellMedia
 	
-	class Contact < ActiveRecord::Base
+	class Contact < ApplicationRecord
 		self.table_name = 'contacts'
 
 		enum status: { 'pending' => 0, 'replied' => 2, 'archive' => 3, 'trash' => 4 }

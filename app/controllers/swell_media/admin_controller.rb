@@ -1,7 +1,7 @@
 module SwellMedia
 
 	class AdminController < ApplicationController
-		before_filter :authenticate_user!, :authorize_admin
+		before_action :authenticate_user!, :authorize_admin
 		layout 'admin'
 		
 		def index

@@ -1,7 +1,6 @@
 module SwellMedia
 	class ContactsController < ApplicationController
-		
-		skip_before_filter :verify_authenticity_token, :only => [ :create ]
+		skip_before_action :verify_authenticity_token, :only => [ :create ]
 
 		def create
 			@contact = ContactUs.new( contact_params )
@@ -14,7 +13,7 @@ module SwellMedia
 
 			else
 				set_flash 'There was a problem...', :danger, @contact
-				redirect_to :back
+				redirect_back( fallback_location: root_path )
 			end
 		end
 

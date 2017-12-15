@@ -1,6 +1,6 @@
 module SwellMedia
 	class RootController < ( SwellMedia.root_controller_parent_class || ApplicationController )
-		before_filter :get_media
+		before_action :get_media
 
 		def show
 			@tags = []

@@ -24,7 +24,7 @@ module SwellMedia
 			if user.present? && not( user.unregistered? )
 				# this email is already registered for this site
 				set_flash "#{email} is already registered.", :error
-				redirect_to :back
+				redirect_back( fallback_location: root_path )
 				return false
 
 			end

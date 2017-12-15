@@ -1,7 +1,7 @@
 module SwellMedia
 	class AssetManagerController < ApplicationController
 
-		before_filter :authenticate_user!
+		before_action :authenticate_user!
 
 		def new
 			@asset = Asset.new
@@ -48,7 +48,7 @@ module SwellMedia
 			if !@asset.save
 
 				set_flash 'Unable to Save', :error
-				redirect_to :back
+				redirect_back( fallback_location: '/admin' )
 
 			else
 				@asset.parent_obj.try(:touch)
@@ -74,12 +74,12 @@ module SwellMedia
 
 						redirect_to uri.to_s
 					rescue
-						redirect_to :back
+						redirect_back( fallback_location: '/admin' )
 					end
 
 				else
 
-					redirect_to :back
+					redirect_back( fallback_location: '/admin' )
 
 				end
 			end
@@ -94,7 +94,7 @@ module SwellMedia
 			@asset.update( status: 'trash' )
 			@asset.parent_obj.try(:touch)
 
-			redirect_to :back
+			redirect_back( fallback_location: '/admin' )
 		end
 
 		def callback_create

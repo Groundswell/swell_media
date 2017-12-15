@@ -1,7 +1,7 @@
 module SwellMedia
 	class CategoryAdminController < AdminController
 
-		before_filter :get_category, except: [ :create, :empty_trash, :index ]
+		before_action :get_category, except: [ :create, :empty_trash, :index ]
 
 		def create
 			@category = Category.new( category_params )
@@ -12,7 +12,7 @@ module SwellMedia
 				redirect_to edit_category_admin_path( @category.id )
 			else
 				set_flash 'Category could not be created', :error, @category
-				redirect_to :back
+				redirect_back( fallback_location: '/admin' )
 			end
 		end
 
@@ -23,7 +23,7 @@ module SwellMedia
 				@category.update( status: :trash )
 			end
 			set_flash 'Category Deleted'
-			redirect_to :back
+			redirect_back( fallback_location: '/admin' )
 		end
 
 		def edit

@@ -1,5 +1,5 @@
 module SwellMedia
-	class LeadOffer < ActiveRecord::Base
+	class LeadOffer < ApplicationRecord
 		self.table_name = 'lead_offers'
 
 		enum status: { 'draft' => 0, 'active' => 1, 'archive' => 2, 'trash' => 3 }

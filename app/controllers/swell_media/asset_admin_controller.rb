@@ -4,7 +4,7 @@
 module SwellMedia
 	class AssetAdminController < AdminController
 
-		before_filter :get_asset, except: [ :create, :empty_trash, :index ]
+		before_action :get_asset, except: [ :create, :empty_trash, :index ]
 
 		def create
 			authorize( Asset, :admin_create? )
@@ -22,7 +22,7 @@ module SwellMedia
 				redirect_to edit_asset_admin_path( @asset )
 			else
 				set_flash 'Asset could not be created', :error, @asset
-				redirect_to :back
+				redirect_back( fallback_location: '/admin' )
 			end
 		end
 
@@ -32,7 +32,7 @@ module SwellMedia
 			@asset.destroy
 			@asset.parent_obj.try(:touch)
 			set_flash 'Asset Deleted'
-			redirect_to :back
+			redirect_back( fallback_location: '/admin' )
 		end
 
 
@@ -44,7 +44,7 @@ module SwellMedia
 		def empty_trash
 			authorize( Asset, :admin_empty_trash? )
 			@assets = Asset.trash.destroy_all
-			redirect_to :back
+			redirect_back( fallback_location: '/admin' )
 			set_flash "#{@assets.count} destroyed"
 		end
 

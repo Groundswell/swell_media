@@ -1,6 +1,6 @@
 module SwellMedia
 	class ArticleAdminController < AdminController
-		before_filter :get_article, except: [ :create, :empty_trash, :index ]
+		before_action :get_article, except: [ :create, :empty_trash, :index ]
 		
 		def create
 			authorize( Article, :admin_create? )
@@ -18,7 +18,7 @@ module SwellMedia
 				redirect_to edit_article_admin_path( @article )
 			else
 				set_flash 'Article could not be created', :error, @article
-				redirect_to :back
+				redirect_back( fallback_location: '/admin' )
 			end
 		end
 
@@ -27,7 +27,7 @@ module SwellMedia
 			authorize( Article, :admin_destroy? )
 			@article.trash!
 			set_flash 'Article Deleted'
-			redirect_to :back
+			redirect_back( fallback_location: '/admin' )
 		end
 
 
@@ -48,7 +48,7 @@ module SwellMedia
 		def empty_trash
 			authorize( Article, :admin_empty_trash? )
 			@articles = Article.trash.destroy_all
-			redirect_to :back
+			redirect_back( fallback_location: '/admin' )
 			set_flash "#{@articles.count} destroyed"
 		end
 

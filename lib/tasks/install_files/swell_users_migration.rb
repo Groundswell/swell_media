@@ -1,4 +1,4 @@
-class SwellUsersMigration < ActiveRecord::Migration
+class SwellUsersMigration < ActiveRecord::Migration[5.1]
 	# V2.0
 	
 	def change

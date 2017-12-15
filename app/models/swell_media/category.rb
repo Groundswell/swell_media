@@ -1,6 +1,6 @@
 module SwellMedia
 
-	class Category < ActiveRecord::Base
+	class Category < ApplicationRecord
 		self.table_name = 'categories'
 
 		enum status: { 'draft' => 0, 'active' => 1, 'archive' => 2, 'trash' => 3 }

@@ -1,6 +1,6 @@
 module SwellMedia
 	class ContactAdminController < AdminController
-		before_filter :get_contact, except: [ :create, :empty_trash, :export, :import, :index ]
+		before_action :get_contact, except: [ :create, :empty_trash, :export, :import, :index ]
 
 		def destroy
 			authorize( Contact, :admin_destroy? )
@@ -43,7 +43,7 @@ module SwellMedia
 				redirect_to contact_admin_index_path
 			else
 				set_flash 'Could Not Import.', :error
-				redirect_to :back
+				redirect_back( fallback_location: '/admin' )
 			end
 		end
 

@@ -1,4 +1,4 @@
-class SwellMediaEmailMigration < ActiveRecord::Migration
+class SwellMediaEmailMigration < ActiveRecord::Migration[5.1]
 
 	def change
 

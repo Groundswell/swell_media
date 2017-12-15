@@ -1,5 +1,5 @@
 module SwellMedia
-	class LeadOfferOptin < ActiveRecord::Base 
+	class LeadOfferOptin < ApplicationRecord
 
 		self.table_name = 'lead_offer_optins'
 

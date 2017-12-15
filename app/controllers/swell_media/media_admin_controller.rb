@@ -4,7 +4,7 @@
 
 module SwellMedia
 	class MediaAdminController < AdminController
-		before_filter :get_media, except: [ :create, :empty_trash, :index ]
+		before_action :get_media, except: [ :create, :empty_trash, :index ]
 
 		def create
 			authorize( Media, :admin_create? )
@@ -23,7 +23,7 @@ module SwellMedia
 				redirect_to edit_media_admin_path( @media )
 			else
 				set_flash 'Media could not be created', :error, @media
-				redirect_to :back
+				redirect_back( fallback_location: '/admin' )
 			end
 		end
 
@@ -32,7 +32,7 @@ module SwellMedia
 			authorize( Media, :admin_destroy? )
 			@media.trash!
 			set_flash 'Media Deleted'
-			redirect_to :back
+			redirect_back( fallback_location: '/admin' )
 		end
 
 
@@ -44,7 +44,7 @@ module SwellMedia
 		def empty_trash
 			authorize( Media, :admin_empty_trash? )
 			@medias = Media.trash.destroy_all
-			redirect_to :back
+			redirect_back( fallback_location: '/admin' )
 			set_flash "#{@medias.count} destroyed"
 		end
 

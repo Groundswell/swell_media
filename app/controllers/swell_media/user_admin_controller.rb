@@ -42,7 +42,7 @@ module SwellMedia
 			else
 				set_flash "Could not save", :danger, @user
 			end
-			redirect_to :back
+			redirect_back( fallback_location: '/admin' )
 		end
 
 		private

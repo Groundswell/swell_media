@@ -1,4 +1,4 @@
-class SwellAssetsMigration < ActiveRecord::Migration
+class SwellAssetsMigration < ActiveRecord::Migration[5.1]
 	# V4.0
 	
 	def change

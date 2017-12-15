@@ -1,5 +1,5 @@
 module SwellMedia
-	class User < ActiveRecord::Base
+	class User < ApplicationRecord
 		self.table_name = 'users'
 
 		enum status: { 'unregistered' => -1, 'pending' => 0, 'active' => 1, 'revoked' => 2, 'archive' => 3, 'trash' => 4 }

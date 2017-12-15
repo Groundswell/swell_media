@@ -18,29 +18,24 @@ Gem::Specification.new do |s|
 
   #s.add_dependency "acts-as-taggable-on"
 	s.add_dependency "acts-as-taggable-array-on"
-  s.add_dependency "awesome_nested_set", '~> 3.0.2'
-  s.add_dependency "browser"
+  s.add_dependency "awesome_nested_set", '~> 3.1'
 	s.add_dependency "carrierwave"
 	s.add_dependency "carrierwave_direct"
-  s.add_dependency 'coffee-rails', '~> 4.1.0'
+  s.add_dependency 'coffee-rails', '~> 4.2.2'
   s.add_dependency "devise"
-	s.add_dependency "fastimage"
-	s.add_dependency "fb_graph"
   s.add_dependency "fog"
   s.add_dependency "friendly_id", '~> 5.1.0'
   s.add_dependency "haml"
   s.add_dependency 'jquery-rails'
   s.add_dependency 'jquery-ui-rails'
   s.add_dependency "kaminari"
-	s.add_dependency "omniauth"
 	s.add_dependency "pg"
   s.add_dependency "pundit"
   # TODO s.add_dependency 'paper_trail', '~> 3.0.1'
-  s.add_dependency "rails", ">= 4.2.0"
-  s.add_dependency 'sass-rails', '~> 5.0.1'
+  s.add_dependency "rails", ">= 5.1.4"
+  s.add_dependency 'sass-rails', '~> 5.0'
   s.add_dependency 'sitemap_generator'
-	s.add_dependency 'staccato'
-	s.add_dependency 'rest-client'
+
 
  
 
