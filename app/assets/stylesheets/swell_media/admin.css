@@ -38,3 +38,11 @@
 .trash.badge{
 	background-color: #a55;
 }
+
+.unfulfilled.badge{
+	background-color: #ffea8a;
+}
+
+.placed.badge {
+	background-color: #ffc58b;
+}
