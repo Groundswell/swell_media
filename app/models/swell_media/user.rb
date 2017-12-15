@@ -22,7 +22,7 @@ module SwellMedia
 		validates_length_of			:password, within: Devise.password_length, allow_blank: true, if: :encrypted_password_changed?, unless: :unregistered?
 
 		### RELATIONSHIPS   	--------------------------------------
-	
+
 		include FriendlyId
 		friendly_id :slugger, use: :slugged
 
@@ -119,7 +119,7 @@ module SwellMedia
 			end
 			tag += "/>"
 			return tag.html_safe
-			
+
 		end
 
 
@@ -197,8 +197,11 @@ module SwellMedia
 			self.name.present? ? self.name : self.full_name
 		end
 
-		
-		def to_s( args={} ) 
+		def to_local_tz( t )
+			t.in_time_zone( self.timezone || 'America/Los_Angeles' )
+		end
+
+		def to_s( args={} )
 			if args[:username]
 				str = self.name.try(:strip)
 				str = 'Guest' if str.blank?
