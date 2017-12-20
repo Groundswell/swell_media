@@ -15,6 +15,7 @@ module SwellMedia
 	class << self
 		mattr_accessor :app_name
 		mattr_accessor :app_host
+		mattr_accessor :app_time_zone
 		mattr_accessor :article_path
 		mattr_accessor :registered_media_types
 		mattr_accessor :asset_host
@@ -47,6 +48,7 @@ module SwellMedia
 		self.registered_media_types = [ 'SwellMedia::Article', 'SwellMedia::Page' ]
 		self.app_name = 'SwellApp'
 		self.app_host = ENV['APP_DOMAIN'] || 'localhost:3000'
+		self.app_time_zone = "Pacific Time (US & Canada)"
 		self.article_path = 'articles'
 		self.article_avatars = []
 		self.asset_host = ENV['ASSET_HOST']

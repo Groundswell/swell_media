@@ -1,6 +1,10 @@
 module SwellMedia
 	module ApplicationHelper
-	  	
+
+		def app_local_tz( t )
+			t.in_time_zone( SwellMedia.app_time_zone || 'America/Los_Angeles' )
+		end
+
 		def set_css_if( args={} )
 			puts "SwellMedia::ApplicationHelper.set_css_if"
 
