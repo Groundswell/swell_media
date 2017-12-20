@@ -23,13 +23,14 @@ module SwellMedia
 
 		belongs_to	:user, class_name: SwellMedia.registered_user_class
 		has_many 	:media_versions, -> { order("id DESC") }
-		belongs_to	:working_media_version, :class_name => "SwellMedia::MediaVersion"
-		belongs_to 	:managed_by, class_name: 'User'
-		belongs_to 	:category
+
+		belongs_to	:working_media_version, :class_name => "SwellMedia::MediaVersion", optional: true
+		belongs_to 	:managed_by, class_name: 'User', optional: true
+		belongs_to 	:category, optional: true
 
 		has_many	:assets, as: :parent_obj, dependent: :destroy
 
-		belongs_to 	:avatar_asset, class_name: Asset.name
+		belongs_to 	:avatar_asset, class_name: Asset.name, optional: true
 
 		include FriendlyId
 		friendly_id :slugger, use: [ :slugged, :history ]

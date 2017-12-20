@@ -36,7 +36,7 @@
 					= f.label :avatar, 'Image:'
 					.row
 						.col-sm-2
-							= image_tag @page.avatar, class: 'img-responsive', id: 'media_avatar'
+							= image_tag @page.avatar.to_s, class: 'img-responsive', id: 'media_avatar'
 							%div{ style: 'text-align:center;padding:0.3em;' }
 								%a{ href: '#', data: { toggle: :assetup, for: '#page_avatar_asset_url,#media_avatar', asset: { asset_type: 'image', use: 'avatar', status: 'active', parent_obj_id: @page.id, parent_obj_type: @page.class.base_class.name }.to_json, params: { authenticity_token: form_authenticity_token() }.to_json } }
 									%i.fa.fa-upload

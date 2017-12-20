@@ -39,7 +39,7 @@
 					.col-xs-4
 						.form-group
 							= f.label :avatar, 'Image (default):'
-							= image_tag @article.avatar, class: 'img-responsive', id: 'article_avatar_img'
+							= image_tag @article.avatar.to_s, class: 'img-responsive', id: 'article_avatar_img'
 							%div{ style: 'text-align:center;padding:0.3em;' }
 								%a{ href: '#', data: { toggle: :assetup, for: '#article_avatar,#article_avatar_img', asset: { asset_type: 'image', use: 'avatar', status: 'active', parent_obj_id: @article.id, parent_obj_type: @article.class.base_class.name }.to_json, params: { authenticity_token: form_authenticity_token() }.to_json } }
 									%i.fa.fa-upload
@@ -49,7 +49,7 @@
 					.col-xs-4
 						.form-group
 							= f.label :cover_image, 'Image (cover):'
-							= image_tag @article.cover_image, class: 'img-responsive', id: 'article_cover_image_img'
+							= image_tag @article.cover_image.to_s, class: 'img-responsive', id: 'article_cover_image_img'
 							%div{ style: 'text-align:center;padding:0.3em;' }
 								%a{ href: '#', data: { toggle: :assetup, for: '#article_cover_image, #article_cover_image_img', asset: { asset_type: 'image', use: 'avatar', status: 'active', parent_obj_id: @article.id, parent_obj_type: @article.class.base_class.name }.to_json, params: { authenticity_token: form_authenticity_token() }.to_json } }
 									%i.fa.fa-upload
