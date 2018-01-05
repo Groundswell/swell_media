@@ -2,6 +2,7 @@
 *= require ./bootstrap/bootstrap.min
 *= require ./custom/wysiwyg
 *= require ./admin_theme/style
+*= require ./admin/ecom
 
 *= require_self
 
