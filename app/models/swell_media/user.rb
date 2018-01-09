@@ -198,6 +198,7 @@ module SwellMedia
 		end
 
 		def to_local_tz( t )
+			return nil if t.nil?
 			t.in_time_zone( self.timezone || 'America/Los_Angeles' )
 		end
 
