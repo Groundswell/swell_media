@@ -12,6 +12,16 @@
 			%a.btn.btn-success{ data: { toggle: :modal, target: '#new_category' } }
 				%i.fa.fa-plus-square
 				New
+
+	.row
+		.col-xs-6
+			= raw paginate @categories
+		.col-xs-6
+			= form_tag category_admin_index_path, method: :get, class: 'pull-right form-inline' do
+				= select_tag :status, options_from_collection_for_select( SwellMedia::Category.statuses, :first, :first, params[:status] ), { prompt: "-- All --", class: 'form-control' }
+				= text_field_tag :q, params[:q], class: 'form-control'
+				= submit_tag 'Search', class: 'btn btn-primary'
+				= link_to 'Clear', category_admin_index_path, class: 'btn btn-default btn-xs'
 	.row
 		.col-xs-12
 			%table.table
@@ -19,6 +29,7 @@
 					%th
 					%th Slug
 					%th Type
+					%th Parent
 					%th Status
 					%th
 				%tbody
@@ -29,7 +40,9 @@
 							%td
 								= category.slug
 							%td
-								= category.type
+								= category.type.gsub( 'SwellMedia::', '' )
+							%td
+								= category.parent
 							%td
 								.badge{ class: category.status }
 									= category.status

@@ -33,7 +33,7 @@ module SwellMedia
 		def index
 		
 			sort_by = params[:sort_by] || 'created_at'
-			sort_dir = params[:sort_dir] || 'desc'
+			sort_dir = params[:sort_dir] || 'asc'
 
 			@categories = Category.order( "#{sort_by} #{sort_dir}" )
 

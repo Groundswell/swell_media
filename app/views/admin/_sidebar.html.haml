@@ -82,7 +82,7 @@
 							- SwellMedia::Category.order( created_at: :desc ).limit( 10 ).each do |category|
 								%li
 									%a{ href: swell_media.edit_category_admin_path( category.id ) }
-										= image_tag category.avatar, width: 24, height: 24, class: 'img img-rounded'
+										= image_tag category.avatar, width: 24, height: 24, class: 'img img-rounded' if category.avatar.present?
 										= category.name
 
 					%li.parent
