@@ -41,7 +41,7 @@ module SwellMedia
 					else
 						begin
 							@media = Media.friendly.find( params[:id] )
-							if @media.try( :redirect_url )
+							if not( @media.redirect_url.blank? )
 								redirect_to @media.redirect_url, status: :moved_permanently and return
 							elsif !@media.published?
 								raise ActionController::RoutingError.new( 'Not Found' )

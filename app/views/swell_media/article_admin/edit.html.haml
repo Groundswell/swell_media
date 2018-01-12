@@ -34,6 +34,9 @@
 							= SwellMedia.app_host
 						= f.text_field :slug_pref, class: 'form-control', placeholder: @article.slug
 
+					= f.label :redirect_url, 'Redirect to:'
+					= f.text_field :redirect_url, class: 'form-control'
+
 
 				.row
 					.col-xs-4
