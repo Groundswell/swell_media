@@ -2,6 +2,7 @@
 *= require ./bootstrap/bootstrap.min
 *= require ./custom/wysiwyg
 *= require ./admin_theme/style
+*= require ./admin/ecom
 
 *= require_self
 
@@ -47,4 +48,29 @@
 .placed.badge {
 	background-color: #ffc58b;
 	color: #666;
+}
+
+.table-multi-select-container { position: relative; }
+.table-multi-select-column, .table-multi-select-all {
+	text-align: center;
+}
+.table-multi-select-row-selected, .table-multi-select-row-selected td {
+	background: #f8f8f8;
+}
+.table-multi-select-selected-menu { display: none; text-align: left; }
+.table-multi-select-selected tr.table-multi-select-selected-menu { display: table-row; }
+.table-multi-select-selected div.table-multi-select-selected-menu {
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	background: #fff;
+	border: 1px solid #ccc;
+	border-bottom-width: 2px;
+	z-index: 99;
+}
+.table-multi-select-selected .table-multi-select-selected-menu span.table-multi-select-count {
+	display: inline;
+	font-size: 1em;
 }

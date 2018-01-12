@@ -7,3 +7,5 @@
 //= require ./custom/wysiwyg
 //= require ./plugins/jquery.assetup.js.coffee
 //= require ./admin_theme/core
+//= require ./admin/ecom
+//= require ./admin/admin
