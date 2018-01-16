@@ -15,6 +15,8 @@ module SwellMedia
 		belongs_to	:user, class_name: SwellMedia.registered_user_class
 		belongs_to 	:parent_obj, polymorphic: true, optional: true
 
+		belongs_to 	:category, optional: true
+
 		has_many	:assets, as: :parent_obj, dependent: :destroy
 
 		def non_ajax_uploader( args = {} )

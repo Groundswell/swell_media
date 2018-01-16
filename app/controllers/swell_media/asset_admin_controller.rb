@@ -61,7 +61,7 @@ module SwellMedia
 			end
 
 			if params[:q].present?
-				@assets = @assets.where( "array[:q] && keywords", q: params[:q].downcase )
+				@assets = @assets.where( ":term = ANY( tags )", term: params[:q].downcase )
 			end
 
 			@assets = @assets.page( params[:page] )
