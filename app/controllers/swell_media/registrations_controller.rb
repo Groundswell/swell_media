@@ -1,9 +1,9 @@
 module SwellMedia
 	class RegistrationsController < Devise::RegistrationsController
-		
+
 		layout 'sessions'
 
-		
+
 		def check_name
 			if SwellMedia.registered_user_class.constantize.find_by( name: params[:name] )
 				render text: "#{params[:name]} has been taken"
@@ -12,7 +12,7 @@ module SwellMedia
 			end
 		end
 
-		
+
 		def create
 			email = params[:user][:email]
 			# todo -- check validity of email param?
@@ -34,7 +34,7 @@ module SwellMedia
 			user.status = SwellMedia.default_user_status || 'pending' if user.unregistered?
 
 			user.name = params[:user][:name]
-			user.ip = request.ip
+			user.ip = client_ip
 			user.password = params[:user][:password]
 			user.password_confirmation = params[:user][:password_confirmation]
 
