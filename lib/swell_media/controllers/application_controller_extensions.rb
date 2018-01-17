@@ -4,7 +4,7 @@ module SwellMedia
 		include Pundit
 
 		def client_ip
-			request.remote_ip
+			request.headers['CF-Connecting-IP'] || request.remote_ip
 		end
 
 		def set_dest
