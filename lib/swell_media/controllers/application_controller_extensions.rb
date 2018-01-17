@@ -3,6 +3,10 @@ module SwellMedia
 	module ApplicationControllerExtensions
 		include Pundit
 
+		def client_ip
+			request.headers['CF-Connecting-IP'] || request.remote_ip
+		end
+
 		def set_dest
 			if params[:dest].present?
 				session[:dest] = params[:dest]
