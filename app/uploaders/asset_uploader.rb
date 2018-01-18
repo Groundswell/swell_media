@@ -7,7 +7,11 @@ if defined?(CarrierWave)
 		# include CarrierWaveDirect::Uploader if defined?(CarrierWaveDirect)
 
 		def filename
-	       "#{original_filename.gsub(".#{file.extension}","")}-#{secure_token}.#{file.extension}" if original_filename.present?
+			if original_filename.present?
+				extname = File.extname original_filename
+				basename = File.basename(original_filename,".*")
+				"#{basename}-#{secure_token}#{extname}"
+			end
 	     end
 
 	     protected

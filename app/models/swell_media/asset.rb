@@ -44,7 +44,7 @@ module SwellMedia
 
 		def file=(file)
 			if file.present? && defined?(CarrierWave)
-				self.properties = self.properties.merge( 'original_filename' => file.original_filename )
+				self.properties = self.properties.merge( 'original_filename' => file.original_filename ) if file.respond_to? :original_filename
 				self.uploader = file
 			end
 		end
