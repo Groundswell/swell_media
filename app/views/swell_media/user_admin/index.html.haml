@@ -10,7 +10,7 @@
 						UserAdmin
 
 		.col-xs-2
-			-#%a.btn.btn-success{ data: { toggle: :modal, target: '#new_user' } }
+			%a.btn.btn-success{ data: { toggle: :modal, target: '#new_user' } }
 				%i.fa.fa-plus-square
 				New
 	.row
@@ -79,3 +79,6 @@
 											%a{ href: user_admin_path( user ), data: { method: 'delete', confirm: 'Are you sure?' } }
 												%i.fa.fa-trash-o
 												Delete!
+
+
+= render 'new_modal'

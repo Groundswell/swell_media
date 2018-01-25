@@ -42,11 +42,11 @@
 					= f.text_area :bio, class: 'form-control'
 			.row
 				.col-xs-12
-					= f.label :address1
-					= f.text_field :address1, class: 'form-control'
+					= f.label :street
+					= f.text_field :street, class: 'form-control'
 
-					= f.label :address2
-					= f.text_field :address2, class: 'form-control'
+					= f.label :street2
+					= f.text_field :street2, class: 'form-control'
 			.row
 				.col-xs-6
 					= f.label :city
@@ -59,15 +59,21 @@
 					= f.text_field :zip, class: 'form-control'
 		
 		.col-xs-4
-			= f.label :created_at, 'Joined'
-			%div
+			- if params[:pw].present?
+				%h4
+					Temp PW:
+					= params[:pw]
+			.form-group
+				= f.label :created_at, 'Joined'
+				
 				= @user.created_at
 
-			= f.label :status
-			= f.collection_select :status, SwellMedia.registered_user_class.constantize.statuses, :first, :first, {}, class: 'form-control'
-
-			= f.label :role
-			= f.collection_select :role, SwellMedia.registered_user_class.constantize.roles, :first, :first, {}, class: 'form-control'
+			.form-group
+				= f.label :status
+				= f.collection_select :status, SwellMedia.registered_user_class.constantize.statuses, :first, :first, {}, class: 'form-control'
+			.form-group
+				= f.label :role
+				= f.collection_select :role, SwellMedia.registered_user_class.constantize.roles, :first, :first, {}, class: 'form-control'
 
 			.input-group
 				= f.submit 'Update', class: 'btn btn-primary'

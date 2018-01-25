@@ -2,6 +2,38 @@ module SwellMedia
 	
 	class UserAdminController < AdminController
 
+		
+		def create
+			email = params[:user][:email]
+
+			nick = params[:user][:name].split( /\s+/ ).first unless params[:user][:name].blank?
+
+			user_attributes = { email: email, full_name: params[:user][:name], nickname: nick, name: params[:user][:name], ip: request.ip }
+
+			if User.where( email: email ).first.present?
+				# this email is already registered for this site
+				set_flash "#{email} is already registered.", :error
+				redirect_to :back
+				return false
+			end
+
+			pw = PasswordGeneratorService.new.generate()
+
+			user = SwellMedia.registered_user_class.constantize.new( user_attributes )
+			user.password = pw
+			user.password_confirmation = pw
+
+			if user.save
+				set_flash "User added"
+	        	redirect_to edit_user_admin_path( user, pw: pw )
+			else
+				set_flash "Could not add user.", :error, user
+				redirect_to :back
+				return false
+			end
+		end
+
+
 		def edit
 			@user = SwellMedia.registered_user_class.constantize.friendly.find( params[:id] )
 
@@ -47,7 +79,7 @@ module SwellMedia
 
 		private
 			def user_params
-				params.require( :user ).permit( :name, :first_name, :last_name, :email, :short_bio, :bio, :shipping_name, :address1, :address2, :city, :state, :zip, :phone, :role, :status )
+				params.require( :user ).permit( :name, :first_name, :last_name, :email, :short_bio, :bio, :shipping_name, :street, :street2, :city, :state, :zip, :phone, :role, :status )
 			end
 
 	end
