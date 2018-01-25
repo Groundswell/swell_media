@@ -6,9 +6,7 @@ module SwellMedia
 		def create
 			email = params[:user][:email]
 
-			nick = params[:user][:name].split( /\s+/ ).first unless params[:user][:name].blank?
-
-			user_attributes = { email: email, full_name: params[:user][:name], nickname: nick, name: params[:user][:name].parameterize, ip: request.ip }
+			user_attributes = { email: email, full_name: params[:user][:name], name: params[:user][:name].parameterize, ip: request.ip }
 
 			if User.where( email: email ).first.present?
 				# this email is already registered for this site
