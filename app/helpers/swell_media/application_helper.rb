@@ -8,7 +8,7 @@ module SwellMedia
 		def current_user_tz_easy_read_date_format( time )
 			time = current_user.to_local_tz(time)
 			if time > 1.hour.ago
-				"#{ActionView::Helpers::DateHelper.time_ago_in_words( created_at ).gsub('about ', '')} ago"
+				"#{ActionView::Helpers::DateHelper.time_ago_in_words( time ).gsub('about ', '')} ago"
 			elsif time > current_user.to_local_tz(Time.now).beginning_of_day
 				time.strftime('%l:%m%P')
 			elsif time > current_user.to_local_tz(1.day.ago).beginning_of_day
