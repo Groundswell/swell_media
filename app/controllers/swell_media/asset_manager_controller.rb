@@ -63,7 +63,7 @@ module SwellMedia
 
 				elsif params[:response] == 'url'
 
-					render text: @asset.url, layout: nil
+					render inline: @asset.url, layout: nil
 
 				elsif request.env['HTTP_REFERER']
 

@@ -32,7 +32,7 @@ module SwellMedia
 			end
 
 			respond_to do |format|
-				format.csv { render text: @contacts.to_csv }
+				format.csv { render inline: @contacts.to_csv }
 			end
 		end
 
@@ -49,7 +49,7 @@ module SwellMedia
 
 
 		def index
-			
+
 			sort_by = params[:sort_by] || 'created_at'
 			sort_dir = params[:sort_dir] || 'desc'
 
