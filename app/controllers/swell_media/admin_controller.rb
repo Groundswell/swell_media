@@ -1,9 +1,10 @@
 module SwellMedia
 
 	class AdminController < ApplicationController
+		helper_method :policy
 		before_action :authenticate_user!, :authorize_admin
 		layout 'admin'
-		
+
 		def index
 			#authorize(  Media )
 			@articles = Article.order( publish_at: :desc ).limit( 10 )
