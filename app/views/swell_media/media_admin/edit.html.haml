@@ -16,10 +16,10 @@
 			%a.btn.btn-primary{ href: preview_media_admin_path( @media.id ), target: '_new' }
 				%i.fa.fa-eye
 				Preview
-	
+
 	=# form_for @media do |f|
 	= form_for @media, url: media_admin_path( @media ) do |f|
-	
+
 		.row
 			.col-xs-8
 				.form-group
@@ -64,7 +64,7 @@
 						= f.collection_select :user_id, SwellMedia.registered_user_class.constantize.where( "role > 1" ), :id, :name, {}, class: 'form-control'
 					.form-group
 						= f.label :publish_at
-						= f.text_field :publish_at, value: @media.publish_at.to_s( :full_time ), class: 'form-control datepicker'
+						= f.text_field :publish_at, value: current_user.to_local_tz( @media.publish_at ), class: 'form-control datetimepicker'
 					.form-group
 						= f.label :category_id
 						= f.collection_select :category_id, SwellMedia::Category.active.order( :name ), :id, :name, { include_blank: '-- None -- ' }, class: 'form-control'
