@@ -3,6 +3,36 @@ module SwellMedia
 	class PageAdminController < AdminController
 		before_action :get_page, except: [ :create, :empty_trash, :index ]
 
+		
+		def clone
+			authorize( Page, :admin_create? )
+			@new_page = Page.new(
+				title: 			@page.title + " (copy)",
+				subtitle: 		@page.subtitle,
+				category_id: 	@page.category_id,
+				layout: 		@page.layout,
+				template: 		@page.template,
+				description: 	@page.description,
+				content: 		@page.content,
+				show_title: 	@page.show_title,
+				keywords: 		@page.keywords,
+				tags: 			@page.tags
+				)
+			@new_page.publish_at ||= Time.zone.now
+			@new_page.user = current_user
+			@new_page.status = 'draft'
+
+			if @new_page.save
+				set_flash 'Page Cloned'
+				redirect_to edit_page_admin_path( @new_page )
+			else
+				set_flash 'Page could not be created', :error, @new_page
+				redirect_back( fallback_location: '/admin' )
+			end
+
+		end
+
+
 		def create
 			authorize( Page, :admin_create? )
 			@page = Page.new( page_params )

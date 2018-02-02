@@ -47,6 +47,7 @@ SwellMedia::Engine.routes.draw do
 	end
 
 	resources :page_admin do
+		put :clone, on: :member
 		get :preview, on: :member
 		delete :empty_trash, on: :collection
 	end

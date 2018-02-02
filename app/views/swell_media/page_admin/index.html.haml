@@ -70,6 +70,11 @@
 												%i.fa.fa-pencil
 												Edit
 										%li
+											%a{ href: clone_page_admin_path( page.id ), data: { method: :put } }
+												%i.fa.fa-copy
+												Clone
+
+										%li
 											%a{ href: preview_page_admin_path( page.id ) }
 												%i.fa.fa-eye
 												Preview
