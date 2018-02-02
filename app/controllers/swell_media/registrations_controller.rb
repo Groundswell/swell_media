@@ -6,9 +6,9 @@ module SwellMedia
 
 		def check_name
 			if SwellMedia.registered_user_class.constantize.find_by( name: params[:name] )
-				render text: "#{params[:name]} has been taken"
+				render inline: "#{params[:name]} has been taken"
 			else
-				render text: "ok"
+				render inline: "ok"
 			end
 		end
 

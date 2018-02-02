@@ -1,9 +1,11 @@
 module SwellMedia
-	
+
 	class Contact < ApplicationRecord
 		self.table_name = 'contacts'
 
 		enum status: { 'pending' => 0, 'replied' => 2, 'archive' => 3, 'trash' => 4 }
+
+		belongs_to	:user, class_name: SwellMedia.registered_user_class, optional: true
 
 		validates_format_of	:email, with: Devise.email_regexp, if: :email_changed?
 
@@ -36,6 +38,6 @@ module SwellMedia
 		def to_s
 			"#{self.type || 'contact'} from #{self.email}"
 		end
-		
+
 	end
 end
