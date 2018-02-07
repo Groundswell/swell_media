@@ -7,6 +7,10 @@ module SwellMedia
 			request.headers['CF-Connecting-IP'] || request.remote_ip
 		end
 
+		def client_ip_country
+			request.headers['CF-IPCountry']
+		end
+
 		def set_dest
 			if params[:dest].present?
 				session[:dest] = params[:dest]
