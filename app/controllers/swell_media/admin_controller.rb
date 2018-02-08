@@ -12,6 +12,11 @@ module SwellMedia
 			@contacts = Contact.order( created_at: :desc ).limit( 10 )
 		end
 
+		protected
+		def log_action_event
+			# do not log admin events
+		end
+
 		private
 			def authorize_admin
 				authorize( Article, :admin_create? )
