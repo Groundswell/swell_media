@@ -198,6 +198,14 @@ module SwellMedia
 			self.name.present? ? self.name : self.full_name
 		end
 
+		def tags_csv
+			self.tags.join(',')
+		end
+
+		def tags_csv=(tags_csv)
+			self.tags = tags_csv.split(/,\s*/)
+		end
+
 		def to_local_tz( t )
 			return nil if t.nil?
 			t.in_time_zone( self.timezone || 'America/Los_Angeles' )

@@ -77,7 +77,7 @@ module SwellMedia
 
 		private
 			def user_params
-				params.require( :user ).permit( :name, :first_name, :last_name, :email, :short_bio, :bio, :shipping_name, :street, :street2, :city, :state, :zip, :phone, :role, :status, :tags )
+				params.require( :user ).permit( :name, :first_name, :last_name, :email, :short_bio, :bio, :shipping_name, :street, :street2, :city, :state, :zip, :phone, :role, :status, :tags_csv )
 			end
 
 	end
