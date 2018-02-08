@@ -25,6 +25,7 @@ module SwellMedia
 
 		include FriendlyId
 		friendly_id :slugger, use: :slugged
+		acts_as_taggable_array_on :tags
 
 		### Class Methods   	--------------------------------------
 		# over-riding Deivse method to allow login via name or email
