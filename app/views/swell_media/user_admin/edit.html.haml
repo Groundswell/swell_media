@@ -34,14 +34,14 @@
 					.col-xs-6
 						= f.label :name, 'User Name'
 						= f.text_field :name, class: 'form-control'
-				
+
 				.row{ style: 'margin: 1em auto;' }
 					.col-xs-2
 						= @user.avatar_tag class: 'img img-responsive img-rounded'
 					.col-xs-8
 						= f.label :avatar
 						= f.text_field :avatar, class: 'form-control'
-						
+
 				.row
 					.col-xs-12
 						= f.label :short_bio
@@ -66,7 +66,7 @@
 					.col-xs-3
 						= f.label :zip
 						= f.text_field :zip, class: 'form-control'
-			
+
 			.col-xs-4
 				- if params[:pw].present?
 					%h4
@@ -74,7 +74,7 @@
 						= params[:pw]
 				.form-group
 					= f.label :created_at, 'Joined'
-					
+
 					= @user.created_at
 
 				.form-group
@@ -83,8 +83,9 @@
 				.form-group
 					= f.label :role
 					= f.collection_select :role, SwellMedia.registered_user_class.constantize.roles, :first, :first, {}, class: 'form-control'
-
+				.form-group
+					= f.label :tags, 'Tags:'
+					= f.text_field :tags, placeholder: 'Separate tags with commas', class: 'form-control'
+					
 				.input-group
 					= f.submit 'Update', class: 'btn btn-primary'
-		
-

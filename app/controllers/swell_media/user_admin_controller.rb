@@ -1,8 +1,8 @@
 module SwellMedia
-	
+
 	class UserAdminController < AdminController
 
-		
+
 		def create
 			email = params[:user][:email]
 
@@ -77,7 +77,7 @@ module SwellMedia
 
 		private
 			def user_params
-				params.require( :user ).permit( :name, :first_name, :last_name, :email, :short_bio, :bio, :shipping_name, :street, :street2, :city, :state, :zip, :phone, :role, :status )
+				params.require( :user ).permit( :name, :first_name, :last_name, :email, :short_bio, :bio, :shipping_name, :street, :street2, :city, :state, :zip, :phone, :role, :status, :tags )
 			end
 
 	end
