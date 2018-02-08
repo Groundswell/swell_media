@@ -32,6 +32,14 @@ module SwellMedia
 		end
 
 
+		def destroy
+			@user = SwellMedia.registered_user_class.constantize.friendly.find( params[:id] )
+			@user.destroy
+			set_flash "#{@user} deleted"
+			redirect_to '/user_admin'
+		end
+
+
 		def edit
 			@user = SwellMedia.registered_user_class.constantize.friendly.find( params[:id] )
 

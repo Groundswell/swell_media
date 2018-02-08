@@ -79,6 +79,8 @@ module SwellMedia
 
 			@pages = Page.order( "#{sort_by} #{sort_dir}" )
 
+			@pages = @pages.where( redirect_url: nil ) unless params[:redirects]
+
 			if params[:status].present? && params[:status] != 'all'
 				@pages = eval "@pages.#{params[:status]}"
 			end

@@ -11,7 +11,7 @@
 						Edit
 						= @user.to_s
 		.col-xs-2
-			%a.btn.btn-danger{ href: '#todo' }
+			%a.btn.btn-danger{ href: user_admin_path( @user ), data: { method: 'delete', confirm: 'Are you sure?' } }
 				Delete
 
 
