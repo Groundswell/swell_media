@@ -12,7 +12,7 @@ module SwellMedia
 
 		enum status: { 'draft' => 0, 'active' => 1, 'archive' => 2, 'trash' => 3 }
 
-		belongs_to	:user, class_name: SwellMedia.registered_user_class
+		belongs_to	:user, class_name: SwellMedia.registered_user_class, optional: true
 		belongs_to 	:parent_obj, polymorphic: true, optional: true
 
 		belongs_to 	:category, optional: true
