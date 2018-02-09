@@ -75,6 +75,10 @@ module SwellMedia
 			@user = SwellMedia.registered_user_class.constantize.friendly.find( params[:id] )
 			@user.attributes = user_params
 
+			# @user.avatar = params[:user][:avatar]
+			@user.avatar_asset_url = params[:user][:avatar_asset_url] unless params[:user][:avatar_asset_url].blank?
+
+
 			if @user.save
 				set_flash "#{@user} updated"
 			else

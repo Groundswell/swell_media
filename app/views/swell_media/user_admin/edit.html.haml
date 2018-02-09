@@ -39,8 +39,12 @@
 					.col-xs-2
 						= @user.avatar_tag class: 'img img-responsive img-rounded'
 					.col-xs-8
-						= f.label :avatar
-						= f.text_field :avatar, class: 'form-control'
+						.form-group
+							= f.label :avatar
+							= f.text_field :avatar, class: 'form-control'
+						.form-group
+							= f.label :avatar_asset_url, 'Remote Upload Avatar URL'
+							= f.text_field :avatar_asset_url, class: 'form-control'
 
 				.row
 					.col-xs-12
