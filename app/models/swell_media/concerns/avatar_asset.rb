@@ -32,7 +32,7 @@ module SwellMedia
 					asset.parent_obj = self
 					assets << asset
 
-					self.avatar_asset = asset
+					self.avatar_asset = asset if self.respond_to? :avatar_asset=
 				else
 
 					puts "avatar_asset_url=( #{url} ) errors #{asset.errors.full_messages}"
