@@ -12,7 +12,7 @@ module SwellMedia
 				asset.parent_obj = self
 				assets << asset
 
-				self.avatar_asset = asset
+				self.avatar_asset = asset if self.respond_to? :avatar_asset=
 				self.avatar = asset.try(:url)
 			end
 
