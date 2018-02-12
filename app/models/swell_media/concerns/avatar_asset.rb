@@ -12,7 +12,7 @@ module SwellMedia
 				asset.parent_obj = self
 				assets << asset
 
-				self.avatar_asset = asset if self.respond_to? :avatar_asset=
+				self.avatar_asset = asset
 				self.avatar = asset.try(:url)
 			end
 
@@ -32,7 +32,7 @@ module SwellMedia
 					asset.parent_obj = self
 					assets << asset
 
-					self.avatar_asset = asset if self.respond_to? :avatar_asset=
+					self.avatar_asset = asset
 				else
 
 					puts "avatar_asset_url=( #{url} ) errors #{asset.errors.full_messages}"
@@ -43,13 +43,13 @@ module SwellMedia
 
 			def avatar_asset_id=( id )
 				puts "avatar_asset_id=( id )"
-				super(id)
+				super(id) if defined? super
 				self.avatar = Asset.find(id).url
 			end
 
 			def avatar_asset=( asset )
 				puts "avatar_asset=( asset )"
-				super(asset)
+				super(asset) if defined? super
 				self.avatar = asset.url
 			end
 		end
