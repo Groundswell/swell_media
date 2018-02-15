@@ -15,7 +15,8 @@ module SwellMedia
 				return false
 			end
 
-			pw = PasswordGeneratorService.new.generate()
+			# pw = PasswordGeneratorService.new.generate()
+			pw = "P#{SecureRandom.hex(4)}"
 
 			user = SwellMedia.registered_user_class.constantize.new( user_attributes )
 			user.password = pw
