@@ -1,14 +1,20 @@
 module SwellMedia
 
 	class AdminController < ApplicationController
-		before_filter :authenticate_user!, :authorize_admin
+		helper_method :policy
+		before_action :authenticate_user!, :authorize_admin
 		layout 'admin'
-		
+
 		def index
 			#authorize(  Media )
 			@articles = Article.order( publish_at: :desc ).limit( 10 )
 			@pages = Page.order( publish_at: :desc ).limit( 10 )
 			@contacts = Contact.order( created_at: :desc ).limit( 10 )
+		end
+
+		protected
+		def log_action_event
+			# do not log admin events
 		end
 
 		private

@@ -9,10 +9,44 @@ module SwellMedia
 					SwellMedia::LeadOfferMailer.confirm( @offer_optin ).deliver
 				end
 
-				redirect_to thank_you_optin_path( @optin.code )
+				@message = 'Success'
+				@success = true
+
+
+				respond_to do |format|
+					format.js {
+						render :create
+					}
+					format.json {
+						render :create
+					}
+					format.html {
+						if params[:action] == 'back'
+							set_flash @message
+							redirect_back( fallback_location: thank_you_optin_path( @optin.code ) )
+						else
+							redirect_to thank_you_optin_path( @optin.code )
+						end
+					}
+				end
+
 			else
-				set_flash "Couldn't sign up #{@optin.email}", :error, @optin
-				redirect_to :back
+				@message = "Couldn't sign up #{@optin.email}"
+				@success = false
+
+
+				respond_to do |format|
+					format.js {
+						render :create
+					}
+					format.json {
+						render :create
+					}
+					format.html {
+						set_flash @message, :error, @optin
+						redirect_back( fallback_location: root_path )
+					}
+				end
 				return false
 			end
 		end

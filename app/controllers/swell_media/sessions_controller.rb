@@ -12,7 +12,7 @@ module SwellMedia
 					sign_in_and_redirect( resource )
 				else
 					set_flash 'login failed'
-					redirect_to :back
+					redirect_back( fallback_location: root_path )
 				end
 
 			else

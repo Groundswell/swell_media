@@ -34,6 +34,12 @@
 						%a{ href: user_admin_index_path( sort_by: 'name', sort_dir: 'desc' ) }
 							%i.fa.fa-arrow-down
 					%th
+						Role
+						%a{ href: user_admin_index_path( sort_by: 'role', sort_dir: 'asc' ) }
+							%i.fa.fa-arrow-up
+						%a{ href: user_admin_index_path( sort_by: 'role', sort_dir: 'desc' ) }
+							%i.fa.fa-arrow-down
+					%th
 						Email
 						%a{ href: user_admin_index_path( sort_by: 'email', sort_dir: 'asc' ) }
 							%i.fa.fa-arrow-up
@@ -54,6 +60,8 @@
 								= user.avatar_tag width: 50, class: 'img img-rounded'
 							%td
 								= link_to user.to_s, edit_user_admin_path( user.id )
+							%td
+								= user.role
 							%td
 								= link_to user.email, edit_user_admin_path( user.id )
 

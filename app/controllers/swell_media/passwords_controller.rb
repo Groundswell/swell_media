@@ -15,7 +15,7 @@ module SwellMedia
 				redirect_to after_sending_reset_password_instructions_path_for(resource_name)
 			else
 				set_flash( resource.errors.full_messages.first, :error )
-				redirect_to :back
+				redirect_back( fallback_location: root_path )
 			end
 		end
 
@@ -33,7 +33,7 @@ module SwellMedia
 				# respond_with resource, location: after_resetting_password_path_for(resource)
 			else
 				set_flash( 'Unable to reset password', :error, resource )
-				redirect_to :back
+				redirect_back( fallback_location: root_path )
 			end
 		end
 

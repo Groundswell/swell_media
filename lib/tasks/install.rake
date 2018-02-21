@@ -3,7 +3,7 @@ namespace :swell_media do
 	task :install do
 		puts "installing"
 
-		files = { 	'.env' => :root, 
+		files = { 	
 					'.gitignore' => :root,
 					'database.yml' => 'config', 
 					'swell_media.rb' => 'config/initializers',
@@ -37,7 +37,7 @@ namespace :swell_media do
 
 		# migrations
 		migrations = [
-					'swell_assets_migration.rb', 'swell_media_migration.rb', 'swell_users_migration.rb'
+					'swell_assets_migration.rb', 'swell_media_email_migration.rb', 'swell_media_migration.rb', 'swell_users_migration.rb'
 		]
 
 		prefix = Time.now.utc.strftime("%Y%m%d%H%M%S").to_i

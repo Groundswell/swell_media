@@ -1,6 +1,6 @@
 module SwellMedia
 	class LeadOfferAdminController < AdminController
-		before_filter :get_offer, except: [ :create, :index ]
+		before_action :get_offer, except: [ :create, :index ]
 		
 		def create
 			authorize( Optin, :admin_create? )
@@ -11,7 +11,7 @@ module SwellMedia
 				redirect_to edit_lead_offer_admin_path( @offer.id )
 			else
 				set_flash 'Offer could not be created', :error, @offer
-				redirect_to :back
+				redirect_back( fallback_location: '/admin' )
 			end
 		end
 
@@ -19,7 +19,7 @@ module SwellMedia
 			authorize( Optin, :admin_destroy? )
 			@offer.trash!
 			set_flash 'Offer Deleted'
-			redirect_to :back
+			redirect_back( fallback_location: '/admin' )
 		end
 
 		def edit

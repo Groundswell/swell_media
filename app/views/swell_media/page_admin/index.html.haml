@@ -42,6 +42,7 @@
 							%i.fa.fa-arrow-up
 						%a{ href: page_admin_index_path( sort_by: 'publish_at', sort_dir: 'desc' ) }
 							%i.fa.fa-arrow-down
+					%th Category
 					%th Status
 					%th
 				%tbody
@@ -53,6 +54,8 @@
 								= page.slug
 							%td
 								= page.publish_at.to_s( :slashed_time )
+							%td
+								= page.category.try( :name )
 							%td
 								.badge{ class: page.status }
 									= page.status
@@ -66,6 +69,11 @@
 											%a{ href: edit_page_admin_path( page.id ) }
 												%i.fa.fa-pencil
 												Edit
+										%li
+											%a{ href: clone_page_admin_path( page.id ), data: { method: :put } }
+												%i.fa.fa-copy
+												Clone
+
 										%li
 											%a{ href: preview_page_admin_path( page.id ) }
 												%i.fa.fa-eye

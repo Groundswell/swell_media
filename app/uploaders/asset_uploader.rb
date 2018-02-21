@@ -6,42 +6,20 @@ if defined?(CarrierWave)
 		storage :fog
 		# include CarrierWaveDirect::Uploader if defined?(CarrierWaveDirect)
 
-
-		# def asset_host
-		# 	SwellMedia.asset_host || super
-		# end
-
-		# Override the directory where uploaded files will be stored.
-		# This is a sensible default for uploaders that are meant to be mounted:
-		def store_dir
-			'assets'
-		end
-
-		# Override the filename of the uploaded files:
-		# Avoid using model.id or version_name here, see uploader/store.rb for details.
 		def filename
-			@name = model.upload
-			@name ||= construct_new_file_name(file.extension) if original_filename
-			#@name ||= construct_new_file_name()
-			@name
-		end
+			if original_filename.present?
+				extname = File.extname original_filename
+				basename = File.basename(original_filename,".*")
+				"#{basename}-#{secure_token}#{extname}"
+			end
+	     end
 
-		def filename=(filename)
-			@name = filename
-		end
+	     protected
+	     def secure_token
+	       var = :"@#{mounted_as}_secure_token"
+	       model.instance_variable_get(var) or model.instance_variable_set(var, SecureRandom.uuid)
+	     end
 
-		#def extension_white_list
-		#	%w(jpg jpeg gif png)
-		#end
-
-		def construct_new_file_name(extension = nil)
-
-			fname = "#{SecureRandom.uuid}"
-
-			fname = "#{fname}.#{extension}" if !extension.blank? #&& extension_white_list.include?(extension)
-
-			fname
-		end
 	end
 
 else

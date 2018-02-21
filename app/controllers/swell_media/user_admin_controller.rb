@@ -1,8 +1,8 @@
 module SwellMedia
-	
+
 	class UserAdminController < AdminController
 
-		
+
 		def create
 			email = params[:user][:email]
 
@@ -15,7 +15,8 @@ module SwellMedia
 				return false
 			end
 
-			pw = PasswordGeneratorService.new.generate()
+			# pw = PasswordGeneratorService.new.generate()
+			pw = "P#{SecureRandom.hex(4)}"
 
 			user = SwellMedia.registered_user_class.constantize.new( user_attributes )
 			user.password = pw
@@ -29,6 +30,14 @@ module SwellMedia
 				redirect_to :back
 				return false
 			end
+		end
+
+
+		def destroy
+			@user = SwellMedia.registered_user_class.constantize.friendly.find( params[:id] )
+			@user.destroy
+			set_flash "#{@user} deleted"
+			redirect_to '/user_admin'
 		end
 
 
@@ -67,17 +76,21 @@ module SwellMedia
 			@user = SwellMedia.registered_user_class.constantize.friendly.find( params[:id] )
 			@user.attributes = user_params
 
+			# @user.avatar = params[:user][:avatar]
+			@user.avatar_asset_url = params[:user][:avatar_asset_url] unless params[:user][:avatar_asset_url].blank?
+
+
 			if @user.save
 				set_flash "#{@user} updated"
 			else
 				set_flash "Could not save", :danger, @user
 			end
-			redirect_to :back
+			redirect_back( fallback_location: '/admin' )
 		end
 
 		private
 			def user_params
-				params.require( :user ).permit( :name, :first_name, :last_name, :email, :short_bio, :bio, :shipping_name, :street, :street2, :city, :state, :zip, :phone, :role, :status )
+				params.require( :user ).permit( :name, :first_name, :last_name, :email, :short_bio, :bio, :shipping_name, :street, :street2, :city, :state, :zip, :phone, :role, :status, :tags_csv )
 			end
 
 	end

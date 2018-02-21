@@ -3,7 +3,6 @@ module SwellMedia
 
 		def console
 			raise unless Rails.env.development?
-
 		end
 
 		def home

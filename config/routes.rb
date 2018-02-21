@@ -7,7 +7,7 @@ SwellMedia::Engine.routes.draw do
 	resources :articles, path: SwellMedia.article_path
 	resources :article_admin, path: 'blog_admin' do
 		get :preview, on: :member
-		delete :empty_trash, on: :collection 
+		delete :empty_trash, on: :collection
 	end
 
 	resources :asset_manager, only: [ :new, :create, :destroy ] do
@@ -16,14 +16,14 @@ SwellMedia::Engine.routes.draw do
 	end
 
 	resources :asset_admin do
-		delete :empty_trash, on: :collection 
+		delete :empty_trash, on: :collection
 	end
 
 	resources :browse
 
 	resources :category_admin
 
-	resources :contacts do 	
+	resources :contacts do
 		get :thanks, on: :collection
 	end
 	resources :contact_admin do
@@ -31,7 +31,7 @@ SwellMedia::Engine.routes.draw do
 		get :export, on: :collection
 	end
 
-	resources :lead_offers, path: 'get' do 
+	resources :lead_offers, path: 'get' do
 		get :accept, on: :member
 	end
 
@@ -39,16 +39,17 @@ SwellMedia::Engine.routes.draw do
 
 	resources :media_admin do
 		get :preview, on: :member
-		delete :empty_trash, on: :collection 
+		delete :empty_trash, on: :collection
 	end
 
-	resources :optins do 	
+	resources :optins do
 		get :thank_you, on: :member, path: 'thank-you'
 	end
 
 	resources :page_admin do
+		put :clone, on: :member
 		get :preview, on: :member
-		delete :empty_trash, on: :collection 
+		delete :empty_trash, on: :collection
 	end
 
 	resources :user_admin
@@ -57,7 +58,7 @@ SwellMedia::Engine.routes.draw do
 	resources :exports
 
 	get 'console' => 'static#console'
-	
+
 
 	#resources :sessions
 

@@ -24,7 +24,7 @@
 					.col-xs-4
 						.form-group
 							= f.label :avatar, 'Image (default):'
-							= image_tag @category.avatar, class: 'img-responsive', id: 'category_avatar_img'
+							= image_tag @category.avatar.to_s, class: 'img-responsive', id: 'category_avatar_img'
 							%div{ style: 'text-align:center;padding:0.3em;' }
 								%a{ href: '#', data: { toggle: :assetup, for: '#category_avatar,#category_avatar_img', asset: { asset_type: 'image', use: 'avatar', status: 'active', parent_obj_id: @category.id, parent_obj_type: @category.class.base_class.name }.to_json, params: { authenticity_token: form_authenticity_token() }.to_json } }
 									%i.fa.fa-upload

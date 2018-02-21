@@ -16,9 +16,9 @@
 			%a.btn.btn-primary{ href: preview_article_admin_path( @article.id ), target: '_new' }
 				%i.fa.fa-eye
 				Preview
-	
+
 	= form_for @article, url: article_admin_path( @article ) do |f|
-	
+
 		.row
 			.col-xs-8
 				.form-group
@@ -34,12 +34,15 @@
 							= SwellMedia.app_host
 						= f.text_field :slug_pref, class: 'form-control', placeholder: @article.slug
 
+					= f.label :redirect_url, 'Redirect to:'
+					= f.text_field :redirect_url, class: 'form-control'
+
 
 				.row
 					.col-xs-4
 						.form-group
 							= f.label :avatar, 'Image (default):'
-							= image_tag @article.avatar, class: 'img-responsive', id: 'article_avatar_img'
+							= image_tag @article.avatar.to_s, class: 'img-responsive', id: 'article_avatar_img'
 							%div{ style: 'text-align:center;padding:0.3em;' }
 								%a{ href: '#', data: { toggle: :assetup, for: '#article_avatar,#article_avatar_img', asset: { asset_type: 'image', use: 'avatar', status: 'active', parent_obj_id: @article.id, parent_obj_type: @article.class.base_class.name }.to_json, params: { authenticity_token: form_authenticity_token() }.to_json } }
 									%i.fa.fa-upload
@@ -49,7 +52,7 @@
 					.col-xs-4
 						.form-group
 							= f.label :cover_image, 'Image (cover):'
-							= image_tag @article.cover_image, class: 'img-responsive', id: 'article_cover_image_img'
+							= image_tag @article.cover_image.to_s, class: 'img-responsive', id: 'article_cover_image_img'
 							%div{ style: 'text-align:center;padding:0.3em;' }
 								%a{ href: '#', data: { toggle: :assetup, for: '#article_cover_image, #article_cover_image_img', asset: { asset_type: 'image', use: 'avatar', status: 'active', parent_obj_id: @article.id, parent_obj_type: @article.class.base_class.name }.to_json, params: { authenticity_token: form_authenticity_token() }.to_json } }
 									%i.fa.fa-upload
@@ -84,7 +87,7 @@
 						= f.collection_select :user_id, SwellMedia.registered_user_class.constantize.where( "role > 1" ), :id, :name, {}, class: 'form-control'
 					.form-group
 						= f.label :publish_at
-						= f.text_field :publish_at, value: @article.publish_at.to_s( :full_time ), class: 'form-control datepicker'
+						= f.text_field :publish_at, value: current_user.to_local_tz( @article.publish_at ), class: 'form-control datetimepicker'
 					.form-group
 						= f.label :category_id
 						= f.collection_select :category_id, SwellMedia::ArticleCategory.active.order( :name ), :id, :name, { include_blank: '-- None -- ' }, class: 'form-control'

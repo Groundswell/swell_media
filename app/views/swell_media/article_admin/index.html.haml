@@ -60,7 +60,7 @@
 					- @articles.each do |article|
 						%tr
 							%td
-								= image_tag article.avatar, width: 50, class: 'img img-rounded'
+								= image_tag article.avatar.to_s, width: 50, class: 'img img-rounded'
 							%td
 								= link_to article.title, edit_article_admin_path( article.id )
 								%br
@@ -96,6 +96,7 @@
 											%a{ href: edit_article_admin_path( article.id ) }
 												%i.fa.fa-pencil
 												Edit
+										
 										%li
 											%a{ href: preview_article_admin_path( article.id ) }
 												%i.fa.fa-eye

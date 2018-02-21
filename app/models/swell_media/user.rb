@@ -1,5 +1,5 @@
 module SwellMedia
-	class User < ActiveRecord::Base
+	class User < ApplicationRecord
 		self.table_name = 'users'
 
 		enum status: { 'unregistered' => -1, 'pending' => 0, 'active' => 1, 'revoked' => 2, 'archive' => 3, 'trash' => 4 }
@@ -25,6 +25,7 @@ module SwellMedia
 
 		include FriendlyId
 		friendly_id :slugger, use: :slugged
+		acts_as_taggable_array_on :tags
 
 		### Class Methods   	--------------------------------------
 		# over-riding Deivse method to allow login via name or email
@@ -195,6 +196,14 @@ module SwellMedia
 
 		def slugger
 			self.name.present? ? self.name : self.full_name
+		end
+
+		def tags_csv
+			self.tags.join(',')
+		end
+
+		def tags_csv=(tags_csv)
+			self.tags = tags_csv.split(/,\s*/)
 		end
 
 		def to_local_tz( t )

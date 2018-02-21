@@ -43,13 +43,13 @@ module SwellMedia
 
 			def avatar_asset_id=( id )
 				puts "avatar_asset_id=( id )"
-				super(id)
+				super(id) if defined? super
 				self.avatar = Asset.find(id).url
 			end
 
 			def avatar_asset=( asset )
 				puts "avatar_asset=( asset )"
-				super(asset)
+				super(asset) if defined? super
 				self.avatar = asset.url
 			end
 		end

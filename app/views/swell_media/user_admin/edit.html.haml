@@ -11,7 +11,7 @@
 						Edit
 						= @user.to_s
 		.col-xs-2
-			%a.btn.btn-danger{ href: '#todo' }
+			%a.btn.btn-danger{ href: user_admin_path( @user ), data: { method: 'delete', confirm: 'Are you sure?' } }
 				Delete
 
 
@@ -34,14 +34,18 @@
 					.col-xs-6
 						= f.label :name, 'User Name'
 						= f.text_field :name, class: 'form-control'
-				
+
 				.row{ style: 'margin: 1em auto;' }
 					.col-xs-2
 						= @user.avatar_tag class: 'img img-responsive img-rounded'
 					.col-xs-8
-						= f.label :avatar
-						= f.text_field :avatar, class: 'form-control'
-						
+						.form-group
+							= f.label :avatar
+							= f.text_field :avatar, class: 'form-control'
+						.form-group
+							= f.label :avatar_asset_url, 'Remote Upload Avatar URL'
+							= f.text_field :avatar_asset_url, class: 'form-control'
+
 				.row
 					.col-xs-12
 						= f.label :short_bio
@@ -51,11 +55,11 @@
 						= f.text_area :bio, class: 'form-control'
 				.row
 					.col-xs-12
-						= f.label :street
-						= f.text_field :street, class: 'form-control'
+						= f.label :address1
+						= f.text_field :address1, class: 'form-control'
 
-						= f.label :street2
-						= f.text_field :street2, class: 'form-control'
+						= f.label :address2
+						= f.text_field :address2, class: 'form-control'
 				.row
 					.col-xs-6
 						= f.label :city
@@ -66,7 +70,7 @@
 					.col-xs-3
 						= f.label :zip
 						= f.text_field :zip, class: 'form-control'
-			
+
 			.col-xs-4
 				- if params[:pw].present?
 					%h4
@@ -74,7 +78,7 @@
 						= params[:pw]
 				.form-group
 					= f.label :created_at, 'Joined'
-					
+
 					= @user.created_at
 
 				.form-group
@@ -83,8 +87,8 @@
 				.form-group
 					= f.label :role
 					= f.collection_select :role, SwellMedia.registered_user_class.constantize.roles, :first, :first, {}, class: 'form-control'
-
+				.form-group
+					= f.label :tags_csv, 'Tags:'
+					= f.text_field :tags_csv, placeholder: 'Separate tags with commas', class: 'form-control'
 				.input-group
 					= f.submit 'Update', class: 'btn btn-primary'
-		
-
