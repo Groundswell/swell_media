@@ -206,9 +206,13 @@ module SwellMedia
 			self.tags = tags_csv.split(/,\s*/)
 		end
 
+		def local_tz
+			self.timezone || 'America/Los_Angeles'
+		end
+
 		def to_local_tz( t )
 			return nil if t.nil?
-			t.in_time_zone( self.timezone || 'America/Los_Angeles' )
+			t.in_time_zone( self.local_tz )
 		end
 
 		def to_s( args={} )
