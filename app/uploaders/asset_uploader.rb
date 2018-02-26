@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-if defined?(CarrierWave)
+if defined?(CarrierWave) && defined?(CarrierWave::Storage::Fog)
 
 	class AssetUploader < CarrierWave::Uploader::Base
 		storage :fog
