@@ -1,6 +1,7 @@
 # require 'acts-as-taggable-on'
 require 'acts-as-taggable-array-on'
 require 'awesome_nested_set'
+#require 'carrierwave'
 require 'devise'
 require 'friendly_id'
 require 'haml'

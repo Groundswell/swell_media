@@ -1,6 +1,4 @@
 
-# TODO
-
 module SwellMedia
 	class AssetAdminController < AdminController
 
@@ -14,6 +12,10 @@ module SwellMedia
 			@asset.user = current_user
 			@asset.status = 'active'
 
+			# TODO: default title to filename from file or path.....
+			@asset.title ||= @asset.file
+
+			# TODO: Tag assets
 
 			if @asset.save
 				@asset.parent_obj.try(:touch)
