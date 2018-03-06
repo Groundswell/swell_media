@@ -45,7 +45,6 @@
 							%i.fa.fa-arrow-down
 
 					%th Status
-					%th Path
 					%th
 				%tbody
 					- @assets.each do |asset|
@@ -53,15 +52,17 @@
 							%td
 								= image_tag asset.url, width: 50, class: 'img img-rounded'
 							%td
-								= link_to asset.title, edit_asset_admin_path( asset.id )
-							%td
+								.title{ style: 'font-size:120%;' }= link_to asset.title, edit_asset_admin_path( asset.id )
+								%br
+								%a.btn{ 'data-clipboard-text' => asset.url, style: 'padding:0;border:none;' }
+									= asset.url
+									%i.fa.fa-clipboard
+									%td
 								= asset.created_at.to_s( :slashed_time )
 
 							%td
 								.badge{ class: asset.status }
 									= asset.status
-							%td
-								= asset.url
 							
 							%td
 								.btn-group
