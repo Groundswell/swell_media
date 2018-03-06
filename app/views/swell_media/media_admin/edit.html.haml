@@ -34,6 +34,9 @@
 						%span.input-group-addon
 							= SwellMedia.app_host
 						= f.text_field :slug_pref, class: 'form-control', placeholder: @media.slug
+						%span.input-group-btn
+							%a.btn.btn-default{ 'data-clipboard-text' => @media.url }
+								%i.fa.fa-clipboard
 
 				.form-group
 					.input-group

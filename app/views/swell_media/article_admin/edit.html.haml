@@ -33,6 +33,9 @@
 						%span.input-group-addon
 							= SwellMedia.app_host
 						= f.text_field :slug_pref, class: 'form-control', placeholder: @article.slug
+						%span.input-group-btn
+							%a.btn.btn-default{ 'data-clipboard-text' => @article.url }
+								%i.fa.fa-clipboard
 
 					= f.label :redirect_url, 'Redirect to:'
 					= f.text_field :redirect_url, class: 'form-control'
