@@ -42,7 +42,7 @@ SwellMedia::Engine.routes.draw do
 		delete :empty_trash, on: :collection
 	end
 
-	resources :optins do
+	resources :optins, only: [:create] do
 		get :thank_you, on: :member, path: 'thank-you'
 	end
 

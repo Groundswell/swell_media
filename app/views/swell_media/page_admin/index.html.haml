@@ -29,12 +29,11 @@
 		.col-xs-12
 			%table.table
 				%thead
-					%th
 					%th 
-						URL
-						%a{ href: page_admin_index_path( sort_by: 'slug', sort_dir: 'asc' ) }
+						Title
+						%a{ href: page_admin_index_path( sort_by: 'title', sort_dir: 'asc' ) }
 							%i.fa.fa-arrow-up
-						%a{ href: page_admin_index_path( sort_by: 'slug', sort_dir: 'desc' ) }
+						%a{ href: page_admin_index_path( sort_by: 'title', sort_dir: 'desc' ) }
 							%i.fa.fa-arrow-down
 					%th 
 						Publish At
@@ -49,9 +48,12 @@
 					- @pages.each do |page|
 						%tr
 							%td
-								= link_to page.to_s, edit_page_admin_path( page.id )
-							%td
-								= page.slug
+								.title{ style: 'font-size:120%;' }= link_to page.title, edit_page_admin_path( page.id )
+								%br
+								%a.btn{ 'data-clipboard-text' => page.url, style: 'padding:0;border:none;' }
+									= page.path
+									%i.fa.fa-clipboard
+		
 							%td
 								= page.publish_at.to_s( :slashed_time )
 							%td

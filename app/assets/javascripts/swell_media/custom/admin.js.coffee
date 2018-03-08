@@ -1,6 +1,8 @@
 
 $(->
 
+	admin_clipboard = new ClipboardJS('[data-clipboard-target],[data-clipboard-text]');
+
 	if $('.editor-full').summernote != undefined
 		$('.editor-full').summernote
 			height: 400

@@ -37,7 +37,7 @@
 							%i.fa.fa-arrow-up
 						%a{ href: article_admin_index_path( sort_by: 'title', sort_dir: 'desc' ) }
 							%i.fa.fa-arrow-down
-					
+
 					%th
 						Publish
 						%a{ href: article_admin_index_path( sort_by: 'publish_at', sort_dir: 'asc' ) }
@@ -62,9 +62,11 @@
 							%td
 								= image_tag article.avatar.to_s, width: 50, class: 'img img-rounded'
 							%td
-								= link_to article.title, edit_article_admin_path( article.id )
+								.title{ style: 'font-size:120%;' }= link_to article.title, edit_article_admin_path( article.id )
 								%br
-								= article.path
+								%a.btn{ 'data-clipboard-text' => article.url, style: 'padding:0;border:none;' }
+									= article.path
+									%i.fa.fa-clipboard
 							%td
 								= article.publish_at.to_s( :slashed_time )
 							%td
