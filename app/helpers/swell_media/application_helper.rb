@@ -10,11 +10,11 @@ module SwellMedia
 			if time > 1.hour.ago
 				"#{time_ago_in_words( time ).gsub('about ', '')} ago"
 			elsif time > current_user.to_local_tz(Time.now).beginning_of_day
-				time.strftime('%l:%m%P')
+				time.strftime('%l:%M%P')
 			elsif time > current_user.to_local_tz(1.day.ago).beginning_of_day
-				"Yesterday, #{time.strftime('%l:%m%P')}"
+				"Yesterday, #{time.strftime('%l:%M%P')}"
 			elsif time > current_user.to_local_tz(7.days.ago).beginning_of_day
-				time.strftime('%A, %l:%m%P')
+				time.strftime('%A, %l:%M%P')
 			else
 				time.to_s(:short)
 			end
