@@ -37,6 +37,9 @@
 				.form-group
 					.input-group
 					= f.label :avatar, 'Image:'
+					- if @page.avatar.present?
+						%a.btn.btn-default{ 'data-clipboard-text' => @page.avatar }
+							%i.fa.fa-clipboard
 					.row
 						.col-sm-2
 							= image_tag @page.avatar.to_s, class: 'img-responsive', id: 'media_avatar'
