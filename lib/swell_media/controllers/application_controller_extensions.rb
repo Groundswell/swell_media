@@ -12,16 +12,25 @@ module SwellMedia
 		end
 
 		def set_dest
+			# first, clear any old dest if exists
+			session[:dest] = nil
 			if params[:dest].present?
 				session[:dest] = params[:dest]
-			elsif (		current_user.nil? &&
-						request.get? &&
-						not( request.fullpath.match( /\/login/ ) ) &&
-						not( request.fullpath.match( /\/logout/ ) ) &&
-						not( request.fullpath.match( /\/register/ ) ) &&
-						!request.xhr? ) # don't store ajax calls
-				session[:dest] = request.fullpath
 			end
+
+			# greedy destination setting... an attempt to redirect back
+			# to wherever user initiated login from
+			# I'm not sure it ever worked right...
+			# commenting out in favor of explicit dest-setting via param only
+			# elsif (		current_user.nil? &&
+			# 			request.get? &&
+			# 			not( request.fullpath.match( /admin/ ) ) &&
+			# 			not( request.fullpath.match( /\/login/ ) ) &&
+			# 			not( request.fullpath.match( /\/logout/ ) ) &&
+			# 			not( request.fullpath.match( /\/register/ ) ) &&
+			# 			!request.xhr? ) # don't store ajax calls
+			# 	session[:dest] = request.fullpath
+			# end
 		end
 
 		def set_flash( msg, code=:success, *objs )
