@@ -16,8 +16,6 @@ module SwellMedia
 				session[:dest] = params[:dest]
 			elsif (		current_user.nil? &&
 						request.get? &&
-						not( controller_name.match( /\outbound/ ) ) &&
-						not( request.fullpath.match( /\/users/ ) ) &&
 						not( request.fullpath.match( /\/login/ ) ) &&
 						not( request.fullpath.match( /\/logout/ ) ) &&
 						not( request.fullpath.match( /\/register/ ) ) &&
