@@ -35,12 +35,13 @@ module SwellMedia
 			def get_media
 
 				if params[:id].present?
-					if params[:id].match( /sitemap/i )
+					page_id = params[:id].downcase
+					if page_id.match( /sitemap/i )
 						redirect_to SwellMedia.site_map_url
 						return false
 					else
 						begin
-							@media = Media.friendly.find( params[:id] )
+							@media = Media.friendly.find( page_id )
 							if not( @media.redirect_url.blank? )
 								redirect_to @media.redirect_url, status: :moved_permanently and return
 							elsif !@media.published?
