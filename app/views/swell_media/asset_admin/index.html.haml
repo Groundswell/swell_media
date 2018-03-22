@@ -55,7 +55,7 @@
 								.title{ style: 'font-size:120%;' }= link_to asset.title, edit_asset_admin_path( asset.id )
 								%br
 								%a.btn{ 'data-clipboard-text' => asset.url, style: 'padding:0;border:none;' }
-									= asset.url
+									= asset.url.truncate( 120 )
 									%i.fa.fa-clipboard
 							
 							%td
