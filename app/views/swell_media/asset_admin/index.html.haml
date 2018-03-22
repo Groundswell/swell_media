@@ -57,7 +57,8 @@
 								%a.btn{ 'data-clipboard-text' => asset.url, style: 'padding:0;border:none;' }
 									= asset.url
 									%i.fa.fa-clipboard
-									%td
+							
+							%td
 								= asset.created_at.to_s( :slashed_time )
 
 							%td
