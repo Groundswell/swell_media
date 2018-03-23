@@ -16,7 +16,7 @@ module SwellMedia
 
 				def find_by_polymorphic_id( polymorphic_id )
 
-					value_type, value_id = self.class.parse_polymorphic_id( polymorphic_id )
+					value_type, value_id = self.parse_polymorphic_id( polymorphic_id )
 
 					value_type.constantize.find_by( id: value_id )
 
