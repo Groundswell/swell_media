@@ -14,6 +14,14 @@ module SwellMedia
 
 			module ClassMethods
 
+				def find_by_polymorphic_id( polymorphic_id )
+
+					value_type, value_id = self.class.parse_polymorphic_id( polymorphic_id )
+
+					value_type.constantize.find_by( id: value_id )
+
+				end
+
 				def build_polymorphic_id( model )
 					return nil if model.nil?
 					"#{model.class.base_class.name.underscore}/#{model.id}"
