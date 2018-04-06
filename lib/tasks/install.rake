@@ -3,9 +3,9 @@ namespace :swell_media do
 	task :install do
 		puts "installing"
 
-		files = { 	
+		files = {
 					'.gitignore' => :root,
-					'database.yml' => 'config', 
+					'database.yml' => 'config',
 					'swell_media.rb' => 'config/initializers',
 					'devise.rb' => 'config/initializers',
 					'carrierwave.rb' => 'config/initializers',
@@ -31,13 +31,19 @@ namespace :swell_media do
     			target = File.join( Rails.root, filename )
     		else
     			target = File.join( Rails.root, path, filename )
-    		end 
-    		FileUtils.cp_r source, target 
+    		end
+    		FileUtils.cp_r source, target
 		end
 
 		# migrations
 		migrations = [
-					'swell_assets_migration.rb', 'swell_media_email_migration.rb', 'swell_media_migration.rb', 'swell_users_migration.rb'
+			'swell_media_migration.rb',
+			'swell_media_users_migration.rb',
+			'swell_media_taggable_users_migration.rb',
+			'swell_media_assets_migration.rb',
+			'swell_media_email_migration.rb',
+			'swell_media_contacts_migration.rb',
+			'swell_media_lead_offer_migration.rb',
 		]
 
 		prefix = Time.now.utc.strftime("%Y%m%d%H%M%S").to_i
@@ -47,7 +53,7 @@ namespace :swell_media do
 
     		target = File.join( Rails.root, 'db/migrate', "#{prefix}_#{filename}" )
 
-    		FileUtils.cp_r source, target 
+    		FileUtils.cp_r source, target
     		prefix += 1
 		end
 
