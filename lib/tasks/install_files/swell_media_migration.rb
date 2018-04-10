@@ -1,6 +1,6 @@
 class SwellMediaMigration < ActiveRecord::Migration[5.1]
 	# V4.0
-	
+
 	def change
 
 		enable_extension 'hstore'
@@ -22,8 +22,6 @@ class SwellMediaMigration < ActiveRecord::Migration[5.1]
 			t.hstore			:properties, default: {}
 			t.timestamps
 		end
-		add_index :categories, :user_id
-		add_index :categories, :parent_id
 		add_index :categories, :type
 		add_index :categories, :lft
 		add_index :categories, :rgt
@@ -51,7 +49,7 @@ class SwellMediaMigration < ActiveRecord::Migration[5.1]
 			t.integer  :sluggable_id, 		null: false
 			t.string   :sluggable_type,		limit: 50
 			t.string   :scope
-		t.datetime :created_at
+			t.datetime :created_at
 		end
 		add_index :friendly_id_slugs, :sluggable_id
 		add_index :friendly_id_slugs, [:slug, :sluggable_type]
@@ -107,10 +105,7 @@ class SwellMediaMigration < ActiveRecord::Migration[5.1]
 		end
 
 		add_index :media, :tags, using: 'gin'
-		add_index :media, :user_id
-		add_index :media, :managed_by_id
 		add_index :media, :public_id
-		add_index :media, :category_id
 		add_index :media, :slug, unique: true
 		add_index :media, [ :slug, :type ]
 		add_index :media, [ :status, :availability ]
@@ -128,7 +123,3 @@ class SwellMediaMigration < ActiveRecord::Migration[5.1]
 
 	end
 end
-
-
-
-

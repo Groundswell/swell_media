@@ -1,4 +1,4 @@
-class LeadOfferMigration < ActiveRecord::Migration
+class SwellMediaLeadOfferMigration < ActiveRecord::Migration
 	def change
 		create_table :lead_offers do |t|
 			t.references 	:place
