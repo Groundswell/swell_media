@@ -6,6 +6,9 @@ namespace :swell_media do
 		files = {
 					'.gitignore' => :root,
 					'database.yml' => 'config',
+					'favicon.png' => 'app/assets/images',
+					'app_theme.js' => 'app/assets/javascripts',
+					'app_theme.css' => 'app/assets/stylesheets',
 					'swell_media.rb' => 'config/initializers',
 					'devise.rb' => 'config/initializers',
 					'carrierwave.rb' => 'config/initializers',
@@ -13,6 +16,9 @@ namespace :swell_media do
 					'application_controller.rb' => 'app/controllers',
 					'user.rb' => 'app/models',
 					'static_controller.rb' => 'app/controllers/swell_media',
+					'passwords_controller.rb' => 'app/controllers',
+					'registrations_controller.rb' => 'app/controllers',
+					'sessions_controller.rb' => 'app/controllers',
 					'application.css' => 'app/assets/stylesheets',
 					'application.js' => 'app/assets/javascripts',
 
