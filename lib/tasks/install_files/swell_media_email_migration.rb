@@ -17,5 +17,5 @@ class SwellMediaEmailMigration < ActiveRecord::Migration[5.1]
 		add_index :emails, :address, unique: true
 
 	end
-	
+
 end

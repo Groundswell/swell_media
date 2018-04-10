@@ -1,12 +1,16 @@
 if ENV['FOG_DIRECTORY'] && defined?( CarrierWave )
 	CarrierWave.configure do |config|
+		config.fog_provider = 'fog/aws'
 		config.fog_credentials = {
-				:provider               => 'AWS',       # required
-				:aws_access_key_id      => ENV['AMZN_ASOC_KEY'],       # required
-				:aws_secret_access_key  => ENV['AMZN_ASOC_SECRET']       # required
+				provider:				'AWS',       # required
+				aws_access_key_id:		ENV['AMZN_ASOC_KEY'],       # required
+				aws_secret_access_key:	ENV['AMZN_ASOC_SECRET'],       # required
+				path_style:				true,
+				region:					'us-west-1',                  # optional, defaults to 'us-east-1'
 		}
 		config.fog_directory  = ENV['FOG_DIRECTORY'] # required
 		config.asset_host = ENV['ASSET_HOST']
+		config.fog_public = true
 
 		# see https://github.com/jnicklas/carrierwave#using-amazon-s3
 		# for more optional configuration
