@@ -16,6 +16,9 @@ namespace :swell_media do
 					'application_controller.rb' => 'app/controllers',
 					'user.rb' => 'app/models',
 					'static_controller.rb' => 'app/controllers/swell_media',
+					'passwords_controller.rb' => 'app/controllers',
+					'registrations_controller.rb' => 'app/controllers',
+					'sessions_controller.rb' => 'app/controllers',
 					'application.css' => 'app/assets/stylesheets',
 					'application.js' => 'app/assets/javascripts',
 
