@@ -14,7 +14,7 @@ class PasswordsController < Devise::PasswordsController
 	#end
 	#
 	#def after_resetting_password_path_for( resource )
-	#	"https://#{ENV['FRONTEND_APP_DOMAIN'] || 'subscribe.neurohacker.com'}/login?reset=success"
+	#	"https://#{ENV['FRONTEND_APP_DOMAIN']}/login?reset=success"
 	#end
 
 end
