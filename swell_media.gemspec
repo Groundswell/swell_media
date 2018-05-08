@@ -23,7 +23,7 @@ Gem::Specification.new do |s|
   s.add_dependency "carrierwave_direct"
   s.add_dependency 'coffee-rails', '~> 4.2.2'
   s.add_dependency "devise"
-  s.add_dependency "fog"
+  s.add_dependency "fog-aws"
   s.add_dependency "friendly_id", '~> 5.1.0'
   s.add_dependency "haml"
   s.add_dependency 'jquery-rails'
@@ -34,6 +34,7 @@ Gem::Specification.new do |s|
   s.add_dependency "pundit"
   # TODO s.add_dependency 'paper_trail', '~> 3.0.1'
   s.add_dependency "rails", ">= 5.1.4"
+  s.add_dependency 'route_downcaser'
   s.add_dependency 'sass-rails', '~> 5.0'
   s.add_dependency 'sitemap_generator'
 

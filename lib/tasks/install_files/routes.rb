@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+
+	resources :admin, only: :index
+
+	
 	devise_scope :user do
 		get '/forgot' => 'passwords#new', as: 'forgot'
 		get '/login' => 'sessions#new', as: 'login'
