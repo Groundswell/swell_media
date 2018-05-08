@@ -1,0 +1,8 @@
+<script>
+window.dataLayer = window.dataLayer || []
+</script>
+<script>
+<% ( @page_event_data || [] ).each do |event| %>
+dataLayer.push(<%= event.to_json.html_safe %>)
+<% end %>
+</script>

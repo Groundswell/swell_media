@@ -22,6 +22,8 @@ namespace :swell_media do
 					'sessions_controller.rb' => 'app/controllers',
 					'application.css' => 'app/assets/stylesheets',
 					'application.js' => 'app/assets/javascripts',
+					'_gtm_body.html.erb' => 'app/views/application',
+					'_gtm_head.html.erb' => 'app/views/application',
 
 		}
 
