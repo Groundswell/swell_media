@@ -58,19 +58,21 @@ module SwellMedia
 
 			type = args[:type] || 'Article'
 
-			@page_meta = {
-				title: args[:page_title] || args[:title] || SwellMedia.app_name,
-				description: args[:description] || SwellMedia.app_description,
+			default_page_meta_og = (SwellMedia.default_page_meta[:og] || {})
 
+			@page_meta = SwellMedia.default_page_meta.deep_merge({
+				title: args[:page_title] || args[:title] || SwellMedia.default_page_meta[:title] || SwellMedia.app_name,
+				description: args[:description] || SwellMedia.default_page_meta[:description] || SwellMedia.app_description,
+				url: request.url,
 				og: {
-					title: args[:title] || SwellMedia.app_name,
+					title: args[:title] || default_page_meta_og[:title] || SwellMedia.app_name,
 					type: type,
-					site_name: SwellMedia.app_name,
+					site_name: default_page_meta_og[:site_name] || SwellMedia.app_name,
 					url: request.url,
-					description: args[:description] || SwellMedia.app_description,
-					image: args[:image] || SwellMedia.app_logo
+					description: args[:description] || default_page_meta_og[:description] || SwellMedia.app_description,
+					image: args[:image] || default_page_meta_og[:image] || SwellMedia.app_logo
 				}
-			}
+			})
 
 			@page_meta = @page_meta.deep_merge( args )
 			@page_meta[:schema] = { "@context" => "http://schema.org/", "@type" => type }.deep_merge( @page_meta[:data] ) if @page_meta[:data].present?

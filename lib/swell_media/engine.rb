@@ -29,6 +29,7 @@ module SwellMedia
 		mattr_accessor :contact_email_from
 
 		mattr_accessor :default_layouts
+		mattr_accessor :default_page_meta
 		mattr_accessor :default_protocol
 		mattr_accessor :default_user_status
 
@@ -60,6 +61,7 @@ module SwellMedia
 
 		self.default_layouts = {}
 		self.default_protocol = 'http'
+		self.default_page_meta = {}
 		self.default_user_status = 'pending'
 
 		self.froala_editor_key = nil
