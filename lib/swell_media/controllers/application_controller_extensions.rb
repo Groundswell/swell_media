@@ -73,11 +73,6 @@ module SwellMedia
 			}
 
 			@page_meta = @page_meta.deep_merge( args )
-
-			if SwellMedia.twitter_handle
-				@page_meta[:twitter] = @page_meta[:og].merge( { format: 'summary', site: SwellMedia.twitter_handle } )
-			end
-
 			@page_meta[:schema] = { "@context" => "http://schema.org/", "@type" => type }.deep_merge( @page_meta[:data] ) if @page_meta[:data].present?
 
 		end

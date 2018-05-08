@@ -16,11 +16,9 @@ In config/intitializers/swell_media.rb
 
 ```ruby
 SwellMedia.configure do |config|
-	config.registered_media_types += [ 'Media Classes' ]
 	config.app_name = 'Your App Name'
 	config.app_description = 'Some description'
 	config.app_logo = 'path to your logo'
-	config.twitter_handle = '@something'
 	config.tag_manager_code = ( ENV['GOOGLE_TAG_MANAGER_CODE'] || "" )
 	config.google_analytics_code = ( ENV['GOOGLE_ANALYTICS_CODE'] || "" )
 	config.google_analytics_site = ( ENV['GOOGLE_ANALYTICS_SITE'] || '' )

@@ -18,12 +18,10 @@ module SwellMedia
 		mattr_accessor :app_host
 		mattr_accessor :app_time_zone
 		mattr_accessor :article_path
-		mattr_accessor :registered_media_types
 		mattr_accessor :asset_host
 		mattr_accessor :article_avatars
 		mattr_accessor :app_description
 		mattr_accessor :app_logo
-		mattr_accessor :twitter_handle
 		mattr_accessor :max_session_inactivity
 		mattr_accessor :encryption_secret
 		mattr_accessor :registered_user_class
@@ -46,16 +44,17 @@ module SwellMedia
 
 		mattr_accessor :default_layouts
 
-		self.registered_media_types = [ 'SwellMedia::Article', 'SwellMedia::Page' ]
 		self.app_name = 'SwellApp'
-		self.app_host = ENV['APP_DOMAIN'] || 'localhost:3000'
-		self.app_time_zone = "Pacific Time (US & Canada)"
-		self.article_path = 'articles'
-		self.article_avatars = []
-		self.asset_host = ENV['ASSET_HOST']
 		self.app_description = 'A Very Swell App indeed'
 		self.app_logo = 'https://media.licdn.com/media/p/1/000/27f/2a3/36f3707.jpg'
-		self.twitter_handle = '@gkparishphilp'
+		self.app_host = ENV['APP_DOMAIN'] || 'localhost:3000'
+		self.app_time_zone = "Pacific Time (US & Canada)"
+
+		self.article_path = 'articles'
+		self.article_avatars = []
+
+		self.asset_host = ENV['ASSET_HOST']
+
 		self.max_session_inactivity = 30.minutes
 		self.encryption_secret = 'fdty45u654jtyredhgr4u654etrhdht54eu6e5hdrt5'
 		self.registered_user_class = '::User'

@@ -6,8 +6,6 @@ SwellMedia.configure do |config|
 	config.app_description = 'A Very Swell App indeed'
 	config.app_logo = 'https://media.licdn.com/media/p/1/000/27f/2a3/36f3707.jpg'
 
-	config.twitter_handle = '@gkparishphilp'
-
 	# config.encryption_secret = 'fdty45u654jtyredhgr4u654etrhdht54eu6e5hdrt5'
 
 	# config.tag_manager_code = nil
