@@ -28,7 +28,6 @@ Gem::Specification.new do |s|
   s.add_dependency 'jquery-rails'
   s.add_dependency 'jquery-ui-rails'
   s.add_dependency "kaminari"
-  s.add_dependency 'omniauth'
   s.add_dependency "pg"
   s.add_dependency "pundit"
   # TODO s.add_dependency 'paper_trail', '~> 3.0.1'
