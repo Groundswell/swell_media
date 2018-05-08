@@ -24,9 +24,6 @@
 %meta{ property: 'twitter:image', content: @page_meta[:image] }
 %meta{ property: 'twitter:image:src', content: @page_meta[:image] }
 
-- if SwellMedia.google_analytics_code
-	%meta{ property: 'ga:client_id', content: session[:ga_client_id] || '' }
-
 = favicon_link_tag 'favicon.png'
 
 = csrf_meta_tags
