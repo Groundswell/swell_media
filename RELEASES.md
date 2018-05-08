@@ -7,7 +7,7 @@
 	* import/export
 	* privacy/terms out of engine
 	* removed duplicate devise routing
-	* twitter_handle and registered_media_types from SwellMedia config
+	* cleanup SwellMedia config options
 	* delete layouts from the engine... rely completely on apps to fulfill them
 * move admin/index into parent app
 	* apps must install /admin route
