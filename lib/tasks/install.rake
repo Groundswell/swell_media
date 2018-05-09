@@ -14,6 +14,7 @@ namespace :swell_media do
 					'devise.rb' => 'config/initializers',
 					'carrierwave.rb' => 'config/initializers',
 					'routes.rb' => 'config',
+					'route_downcaser.rb' => 'config/initializers',
 					'application_controller.rb' => 'app/controllers',
 					'user.rb' => 'app/models',
 					'static_controller.rb' => 'app/controllers/swell_media',
@@ -92,6 +93,7 @@ namespace :swell_media do
 			'admin_controller.rb' => 'app/controllers',
 			'swell_media.rb' => 'config/initializers',
 			'routes.rb' => 'config',
+			'route_downcaser.rb' => 'config/initializers',
 			'_gtm_body.html.erb' => 'app/views/application',
 			'_gtm_head.html.erb' => 'app/views/application',
 		}
