@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
 	resources :admin, only: :index
 
-	
+
 	devise_scope :user do
 		get '/forgot' => 'passwords#new', as: 'forgot'
 		get '/login' => 'sessions#new', as: 'login'
@@ -12,7 +12,8 @@ Rails.application.routes.draw do
 	end
 
 	# @todo uncomment after migration
-	# devise_for :users, :controllers => { :omniauth_callbacks => 'oauth', :registrations => 'registrations', :sessions => 'sessions', :passwords => 'passwords' }
+	# devise_for :users, :controllers => { :registrations => 'registrations', :sessions => 'sessions', :passwords => 'passwords' }
+	# more recommended devise options { :omniauth_callbacks => 'oauth' }
 
 	mount SwellMedia::Engine, :at => '/'
 
