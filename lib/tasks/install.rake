@@ -84,4 +84,29 @@ namespace :swell_media do
 		# rake DB
 		# run Server
 	end
+
+	task :migrate_v2_6_0 do
+		puts "migrating"
+
+		files = {
+			'admin_controller.rb' => 'app/controllers',
+			'swell_media.rb' => 'config/initializers',
+			'routes.rb' => 'config',
+			'_gtm_body.html.erb' => 'app/views/application',
+			'_gtm_head.html.erb' => 'app/views/application',
+		}
+
+		files.each do |filename, path|
+			puts "installing: #{path}/#{filename}"
+
+			source = File.join( Gem.loaded_specs["swell_media"].full_gem_path, "lib/tasks/install_files", filename )
+    		if path == :root
+    			target = File.join( Rails.root, filename )
+    		else
+    			target = File.join( Rails.root, path, filename )
+    		end
+    		FileUtils.cp_r source, target
+		end
+
+	end
 end
