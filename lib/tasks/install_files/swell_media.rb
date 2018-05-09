@@ -6,7 +6,7 @@ SwellMedia.configure do |config|
 	config.app_description = 'A Very Swell App indeed'
 	config.app_logo = 'https://media.licdn.com/media/p/1/000/27f/2a3/36f3707.jpg'
 
-	# config.default_protocol = 'http'
+	config.default_protocol = 'https' unless Rails.env.development?
 
 	# config.default_page_meta = {
 	# 	twitter_format: 'summary',

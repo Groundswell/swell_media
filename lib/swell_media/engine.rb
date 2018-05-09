@@ -9,6 +9,7 @@ require 'jquery-rails'
 require 'jquery-ui-rails'
 require 'kaminari'
 require 'pundit'
+require 'route_downcaser'
 require 'swell_media/controllers/application_controller_extensions'
 
 module SwellMedia
