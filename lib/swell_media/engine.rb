@@ -22,6 +22,7 @@ module SwellMedia
 		mattr_accessor :app_time_zone
 
 		mattr_accessor :article_path
+		
 		mattr_accessor :article_avatars
 
 		mattr_accessor :asset_host

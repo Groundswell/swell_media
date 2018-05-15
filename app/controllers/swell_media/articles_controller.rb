@@ -20,6 +20,8 @@
 			@articles = @articles.page( params[:page] )
 
 			set_page_meta title: @title, og: { type: 'blog' }, twitter: { card: 'summary' }
+
+			log_event( { name: 'pageview', content: "viewed the blog index" } )
 			
 		end
 

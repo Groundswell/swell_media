@@ -4,14 +4,8 @@ module SwellMedia
 		def create
 			@optin = SwellMedia::Optin.new( optin_params )
 			if @optin.save
-				if @offer = LeadOffer.friendly.find_by( id: optin_params[:offer_id] )
-					@offer_optin = LeadOfferOptin.create( optin: @optin, lead_offer: @offer )
-					SwellMedia::LeadOfferMailer.confirm( @offer_optin ).deliver
-				end
 
-				@message = 'Success'
-				@success = true
-
+				log_event( { name: 'email_optin', content: "opted into the email list" } )
 
 				respond_to do |format|
 					format.js {

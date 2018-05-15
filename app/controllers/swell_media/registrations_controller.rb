@@ -42,6 +42,8 @@ module SwellMedia
 
 				user.on_registration
 
+				log_event( { name: 'registration', content: "created a user account." } )
+
 				if user.active_for_authentication?
 
 					set_flash "Thanks for signing up!"

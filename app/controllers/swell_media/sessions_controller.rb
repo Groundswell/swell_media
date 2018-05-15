@@ -9,6 +9,7 @@ module SwellMedia
 			if self.resource
 
 				if sign_in( resource_name, resource )
+					log_event( name: 'login', on: resource, content: 'logged in.' )
 					sign_in_and_redirect( resource )
 				else
 					set_flash 'login failed'
@@ -18,6 +19,12 @@ module SwellMedia
 			else
 				redirect_to self.try(:after_sign_in_failure_path) || '/login'
 			end
+		end
+
+
+		def destroy
+			log_event( name: 'logout', on: resource, content: 'logged out.' )
+			super
 		end
 
 		def new

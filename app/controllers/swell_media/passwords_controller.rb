@@ -12,6 +12,8 @@ module SwellMedia
 			if successfully_sent?(resource)
 				set_flash('Password reset email has been sent')
 
+				log_event( { name: 'forgot_pw', content: "sent forgot password email." } )
+
 				redirect_to after_sending_reset_password_instructions_path_for(resource_name)
 			else
 				set_flash( resource.errors.full_messages.first, :error )
@@ -28,6 +30,8 @@ module SwellMedia
 				flash_message = resource.active_for_authentication? ? :updated : :updated_not_active
 				set_flash_message(:notice, flash_message) if is_flashing_format?
 				sign_in(resource_name, resource)
+
+				log_event( { name: 'update_password', content: "updated their password." } )
 
 				redirect_to after_resetting_password_path_for(resource_name)
 				# respond_with resource, location: after_resetting_password_path_for(resource)
