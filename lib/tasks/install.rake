@@ -6,6 +6,7 @@ namespace :swell_media do
 		files = {
 					'.gitignore' => :root,
 					'admin_controller.rb' => 'app/controllers',
+					'application_service.rb' => 'app/services',
 					'database.yml' => 'config',
 					'favicon.png' => 'app/assets/images',
 					'app_theme.js' => 'app/assets/javascripts',
