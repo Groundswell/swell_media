@@ -8,6 +8,12 @@ class ApplicationController < ActionController::Base
 	before_action :set_page_meta
 
 
+	def log_system_event( options={} )
+		if defined?( Bunyan )
+			bunyan_system_log( options )
+		end
+	end
+
 	def log_event( options={} )
 		if defined?( Bunyan )
 			bunyan_log( options )
