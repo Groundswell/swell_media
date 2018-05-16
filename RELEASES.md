@@ -1,4 +1,7 @@
 
+== V2.7.0 (05/16/2018 TBD)
+* Replace swell analytics with bunyan
+
 == V2.6.0 (5/2018 TBD)
 * Remove bunch of cruft
 	* lead-offers
