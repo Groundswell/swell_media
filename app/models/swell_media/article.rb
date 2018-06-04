@@ -10,9 +10,9 @@ module SwellMedia
 		end
 
 		def page_meta
-			super.merge( fb_type: 'blog' )
+			super.merge( fb_type: 'article' )
 		end
-		
+
 
 		def reading_time( args={} )
 			wpm = args[:wpm] || 225
