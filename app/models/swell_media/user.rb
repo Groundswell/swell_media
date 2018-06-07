@@ -137,6 +137,18 @@ module SwellMedia
 			end
 		end
 
+		def email=(value)
+
+			if value.present?
+				email_parts = value.split("@")
+				email_parts[0] = email_parts[0].gsub(/\./,'')
+				value = email_parts.join('@')
+				value = value.downcase
+			end
+
+			super(value)
+		end
+
 
 		def full_name
 			if self.first_name.present? || self.last_name.present?
