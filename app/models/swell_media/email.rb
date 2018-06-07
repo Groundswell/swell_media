@@ -9,5 +9,14 @@ module SwellMedia
 
 		validates_format_of :address, with: Devise.email_regexp, if: :address_changed?
 
+		def self.email_sanitize( value )
+			return value unless value.present?
+
+			email_parts = value.split("@")
+			email_parts[0] = email_parts[0].gsub(/\./,'')
+			value = email_parts.join('@')
+			value = value.downcase
+		end
+
 	end
 end
