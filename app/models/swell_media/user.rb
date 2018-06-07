@@ -138,15 +138,7 @@ module SwellMedia
 		end
 
 		def email=(value)
-
-			if value.present?
-				email_parts = value.split("@")
-				email_parts[0] = email_parts[0].gsub(/\./,'')
-				value = email_parts.join('@')
-				value = value.downcase
-			end
-
-			super(value)
+			super( SwellMedia::Email.email_sanitize( value ) )
 		end
 
 
