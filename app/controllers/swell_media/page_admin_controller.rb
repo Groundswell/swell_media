@@ -3,7 +3,7 @@ module SwellMedia
 	class PageAdminController < AdminController
 		before_action :get_page, except: [ :create, :empty_trash, :index ]
 
-		
+
 		def clone
 			authorize( Page, :admin_create? )
 			@new_page = Page.new(
@@ -73,7 +73,7 @@ module SwellMedia
 
 		def index
 			authorize( Page, :admin? )
-			
+
 			sort_by = params[:sort_by] || 'publish_at'
 			sort_dir = params[:sort_dir] || 'desc'
 
@@ -103,7 +103,7 @@ module SwellMedia
 
 		def update
 			authorize( @page, :admin_update? )
-			
+
 			@page.slug = nil if params[:page][:slug_pref].present? || params[:page][:title] != @page.title
 			@page.attributes = page_params
 
@@ -118,12 +118,12 @@ module SwellMedia
 
 		private
 			def page_params
-				params.require( :page ).permit( :title, :subtitle, :slug_pref, :description, :content, :status, :publish_at, :show_title, :is_commentable, :user_id, :tags, :tags_csv, :avatar, :avatar_asset_file, :avatar_asset_url )
+				params.require( :page ).permit( :title, :subtitle, :avatar_caption, :slug_pref, :description, :content, :status, :publish_at, :show_title, :is_commentable, :user_id, :tags, :tags_csv, :avatar, :avatar_asset_file, :avatar_asset_url )
 			end
 
 			def get_page
 				@page = Page.friendly.find( params[:id] )
 			end
-		
+
 	end
 end

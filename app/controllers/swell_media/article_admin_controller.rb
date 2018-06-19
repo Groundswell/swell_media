@@ -1,7 +1,7 @@
 module SwellMedia
 	class ArticleAdminController < AdminController
 		before_action :get_article, except: [ :create, :empty_trash, :index ]
-		
+
 		def create
 			authorize( Article, :admin_create? )
 			@article = Article.new( article_params )
@@ -80,14 +80,14 @@ module SwellMedia
 
 			layout = @media.class.name.underscore.pluralize
 			layout = @media.layout if @media.layout.present?
-			
+
 			render "swell_media/articles/show", layout: layout
 		end
 
 
 		def update
 			authorize( @article, :admin_update? )
-			
+
 			@article.slug = nil if ( params[:article][:title] != @article.title ) || ( params[:article][:slug_pref].present? )
 
 			@article.attributes = article_params
@@ -105,13 +105,13 @@ module SwellMedia
 				set_flash 'Article could not be Updated', :error, @article
 				render :edit
 			end
-			
+
 		end
 
 
 		private
 			def article_params
-				params.require( :article ).permit( :title, :subtitle, :slug_pref, :description, :content, :category_id, :status, :publish_at, :show_title, :is_commentable, :user_id, :tags, :tags_csv, :avatar, :avatar_asset_file, :avatar_asset_url, :cover_image, :avatar_urls, :redirect_url )
+				params.require( :article ).permit( :title, :subtitle, :avatar_caption, :slug_pref, :description, :content, :category_id, :status, :publish_at, :show_title, :is_commentable, :user_id, :tags, :tags_csv, :avatar, :avatar_asset_file, :avatar_asset_url, :cover_image, :avatar_urls, :redirect_url )
 			end
 
 			def get_article

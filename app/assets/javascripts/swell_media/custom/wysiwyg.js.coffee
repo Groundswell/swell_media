@@ -27,6 +27,7 @@ init_wysiwyg = (container)->
 			list_description: ['bold', 'italic', 'formatOL', 'formatUL', '|', 'insertImage', 'insertLink', 'insertVideo'],
 			default: ['bold', 'italic', 'underline', 'strikeThrough', 'color', '|', 'paragraphFormat', 'align', 'formatOL', 'formatUL', 'indent', 'outdent', '|', 'insertImage', 'insertLink', 'insertFile', 'insertVideo', 'undo', 'redo'],
 			admin_default: ['bold', 'italic', 'underline', 'strikeThrough', 'color', '|', 'paragraphFormat', 'align', 'formatOL', 'formatUL', 'indent', 'outdent', '|', 'insertImage', 'insertLink', 'insertFile', 'insertVideo', 'undo', 'redo', '|', 'html'],
+			admin_lite: ['bold', 'italic', 'underline', 'strikeThrough', 'color', '|', 'align', '|', 'insertLink', '|', 'html'],
 		}
 		$('textarea.wysiwyg', container).each ->
 			$this = $(this)
@@ -99,6 +100,3 @@ $(document).on 'ready', (e)->
 	container = $(e.target)
 
 	init_wysiwyg( container )
-
-
-
