@@ -26,8 +26,8 @@ init_wysiwyg = (container)->
 			answer_md: ['bold', 'italic', '|', 'align', 'formatOL', 'formatUL', '|', 'insertLink', 'insertImage', 'insertVideo', 'clearFormatting', '|', 'insertProduct'],
 			list_description: ['bold', 'italic', 'formatOL', 'formatUL', '|', 'insertImage', 'insertLink', 'insertVideo'],
 			default: ['bold', 'italic', 'underline', 'strikeThrough', 'color', '|', 'paragraphFormat', 'align', 'formatOL', 'formatUL', 'indent', 'outdent', '|', 'insertImage', 'insertLink', 'insertFile', 'insertVideo', 'undo', 'redo'],
-			admin_default: ['bold', 'italic', 'underline', 'strikeThrough', 'color', '|', 'paragraphFormat', 'align', 'formatOL', 'formatUL', 'indent', 'outdent', '|', 'insertImage', 'insertLink', 'insertFile', 'insertVideo', 'undo', 'redo', '|', 'html'],
-			admin_lite: ['bold', 'italic', 'underline', 'strikeThrough', 'color', '|', 'align', '|', 'insertLink', '|', 'html'],
+			admin_default: ['bold', 'italic', 'underline', 'strikeThrough', 'color', '|', 'paragraphFormat', 'align', 'formatOL', 'formatUL', 'indent', 'outdent', '|', 'insertImage', 'insertLink', 'insertFile', 'insertVideo', 'subscript', 'superscript', 'undo', 'redo', '|', 'html'],
+			admin_lite: ['bold', 'italic', 'underline', 'strikeThrough', 'color', '|', 'align', '|', 'insertLink', 'subscript', 'superscript', '|', 'html'],
 		}
 		$('textarea.wysiwyg', container).each ->
 			$this = $(this)
