@@ -3,6 +3,7 @@
 //= require jquery-ui
 //= require ./plugins/clipboard.js
 //= require ./plugins/moment.js
+//= require ./plugins/select2.js
 //= require ./bootstrap/bootstrap.min
 //= require ./plugins/bootstrap-datetimepicker.min.js
 //= require ./custom/wysiwyg
