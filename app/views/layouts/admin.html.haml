@@ -18,7 +18,7 @@
 	%body
 		#cl-wrapper
 			= render 'admin/sidebar'
-			#pcont.container-fluid
+			#pcont.container-fluid{ class: "controller_#{controller_name.underscore} action_#{action_name.underscore}" }
 				= render 'admin/navbar'
 
 				.cl-mcont

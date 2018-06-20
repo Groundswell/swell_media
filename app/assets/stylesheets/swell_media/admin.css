@@ -9,6 +9,11 @@
 
 */
 
+#pcont.controller_article_admin.action_edit,
+#pcont.controller_page_admin.action_edit {
+	overflow: unset;
+}
+
 .well.white-well {
 	background: #fff;
 }

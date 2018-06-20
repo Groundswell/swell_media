@@ -26,32 +26,38 @@ init_wysiwyg = (container)->
 			answer_md: ['bold', 'italic', '|', 'align', 'formatOL', 'formatUL', '|', 'insertLink', 'insertImage', 'insertVideo', 'clearFormatting', '|', 'insertProduct'],
 			list_description: ['bold', 'italic', 'formatOL', 'formatUL', '|', 'insertImage', 'insertLink', 'insertVideo'],
 			default: ['bold', 'italic', 'underline', 'strikeThrough', 'color', '|', 'paragraphFormat', 'align', 'formatOL', 'formatUL', 'indent', 'outdent', '|', 'insertImage', 'insertLink', 'insertFile', 'insertVideo', 'undo', 'redo'],
-			admin_default: ['bold', 'italic', 'underline', 'strikeThrough', 'color', '|', 'paragraphFormat', 'align', 'formatOL', 'formatUL', 'indent', 'outdent', '|', 'insertImage', 'insertLink', 'insertFile', 'insertVideo', 'subscript', 'superscript', 'undo', 'redo', '|', 'html'],
+			admin_default: ['bold', 'italic', 'underline', 'strikeThrough', 'quote', 'subscript', 'superscript', 'color', '|', 'paragraphFormat', 'fontSize', 'align', '|', 'formatOL', 'formatUL', 'indent', 'outdent', '|', 'insertImage', 'insertLink', 'insertFile', 'insertVideo', 'undo', 'redo', '|', 'html'],
 			admin_lite: ['bold', 'italic', 'underline', 'strikeThrough', 'color', '|', 'align', '|', 'insertLink', 'subscript', 'superscript', '|', 'html'],
 		}
 		$('textarea.wysiwyg', container).each ->
 			$this = $(this)
 
-			toolbar_preset = ($this.data('wysiwyg') || {}).toolbar_preset || 'default'
+			config = ($this.data('wysiwyg') || {})
+			config.toolbar_sticky = config.toolbar_sticky || false
+			config.char_counter_count = config.char_counter_count || false
 
-			wysiwyg_toolbar_buttons = ($this.data('wysiwyg') || {}).toolbar_buttons || default_wysiwyg_toolbar_button_presets[toolbar_preset] || default_wysiwyg_toolbar_button_presets['default']
-			wysiwyg_toolbar_buttons_md = ($this.data('wysiwyg') || {}).toolbar_buttons_md || default_wysiwyg_toolbar_button_presets[toolbar_preset+"_md"] || wysiwyg_toolbar_buttons
-			wysiwyg_toolbar_buttons_sm = ($this.data('wysiwyg') || {}).toolbar_buttons_sm || default_wysiwyg_toolbar_button_presets[toolbar_preset+"_sm"] || wysiwyg_toolbar_buttons_md
-			wysiwyg_toolbar_buttons_xs = ($this.data('wysiwyg') || {}).toolbar_buttons_xs || default_wysiwyg_toolbar_button_presets[toolbar_preset+"_xs"] || wysiwyg_toolbar_buttons_sm
+			console.log( 'wysiwyg config', config )
+
+			toolbar_preset = config.toolbar_preset || 'default'
+
+			wysiwyg_toolbar_buttons = config.toolbar_buttons || default_wysiwyg_toolbar_button_presets[toolbar_preset] || default_wysiwyg_toolbar_button_presets['default']
+			wysiwyg_toolbar_buttons_md = config.toolbar_buttons_md || default_wysiwyg_toolbar_button_presets[toolbar_preset+"_md"] || wysiwyg_toolbar_buttons
+			wysiwyg_toolbar_buttons_sm = config.toolbar_buttons_sm || default_wysiwyg_toolbar_button_presets[toolbar_preset+"_sm"] || wysiwyg_toolbar_buttons_md
+			wysiwyg_toolbar_buttons_xs = config.toolbar_buttons_xs || default_wysiwyg_toolbar_button_presets[toolbar_preset+"_xs"] || wysiwyg_toolbar_buttons_sm
 
 			$this.froalaEditor({
-				heightMin: $this.data('heightmin') || ($this.data('wysiwyg') || {}).height_min,
+				heightMin: $this.data('heightmin') || config.height_min,
 				linkInsertButtons: ['linkBack'],
 				linkList: false,
 				linkMultipleStyles: false,
 				toolbarInline: false,
 				pastePlain: true,
-				charCounterCount: ($this.data('wysiwyg') || {}).char_counter_count || false,
+				charCounterCount: config.char_counter_count,
 				placeholderText: $this.attr('placeholder'),
 				height: $this.data('height'),
-				toolbarSticky: ($this.data('wysiwyg') || {}).toolbar_sticky || false,
-				toolbarStickyOffset: ($this.data('wysiwyg') || {}).toolbar_sticky_offset || $('header>nav').outerHeight(),
-				imageUploadURL: (($this.data('wysiwyg') || {}).asset_manager || '/asset_manager'),
+				toolbarSticky: config.toolbar_sticky,
+				toolbarStickyOffset: config.toolbar_sticky_offset || $('header>nav').outerHeight(),
+				imageUploadURL: (config.asset_manager || '/asset_manager'),
 				toolbarButtons: wysiwyg_toolbar_buttons,
 				toolbarButtonsMD: wysiwyg_toolbar_buttons_md,
 				toolbarButtonsSM: wysiwyg_toolbar_buttons_sm,
