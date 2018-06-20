@@ -1,6 +1,7 @@
 /*
 *= require ./bootstrap/bootstrap.min
 *= require ./plugins/bootstrap-datetimepicker
+*= require ./custom/select2
 *= require ./custom/wysiwyg
 *= require ./admin_theme/style
 

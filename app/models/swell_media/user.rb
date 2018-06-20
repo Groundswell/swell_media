@@ -137,9 +137,10 @@ module SwellMedia
 			end
 		end
 
-		# def email=(value)
-		# 	super( SwellMedia::Email.email_sanitize( value ) )
-		# end
+		def email=(value)
+			# super( SwellMedia::Email.email_sanitize( value ) )
+			super( value.try(:downcase) )
+		end
 
 
 		def full_name
