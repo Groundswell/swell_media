@@ -18,6 +18,7 @@ namespace :swell_media do
 					'route_downcaser.rb' => 'config/initializers',
 					'application_controller.rb' => 'app/controllers',
 					'user.rb' => 'app/models',
+					'user_policy.rb' => 'app/policies',
 					'static_controller.rb' => 'app/controllers/swell_media',
 					'passwords_controller.rb' => 'app/controllers',
 					'registrations_controller.rb' => 'app/controllers',

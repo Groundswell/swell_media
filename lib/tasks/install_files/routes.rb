@@ -11,9 +11,11 @@ Rails.application.routes.draw do
 		get '/register' => 'registrations#new', as: 'register'
 	end
 
-	# @todo uncomment after migration
-	# devise_for :users, :controllers => { :registrations => 'registrations', :sessions => 'sessions', :passwords => 'passwords' }
-	# more recommended devise options { :omniauth_callbacks => 'oauth' }
+	# @todo remove if statement
+	if ActiveRecord::Base.connection.table_exists? 'users'
+		devise_for :users, :controllers => { :registrations => 'registrations', :sessions => 'sessions', :passwords => 'passwords' }
+		# more recommended devise options { :omniauth_callbacks => 'oauth' }
+	end
 
 	mount SwellMedia::Engine, :at => '/'
 
