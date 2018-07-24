@@ -17,6 +17,8 @@ module SwellMedia
 			email = params[:user][:email]
 			# todo -- check validity of email param?
 
+			email_model = SwellMedia::Email.create_or_update_by_email( email )
+
 			user_class = SwellMedia.registered_user_class.constantize
 
 			user = user_class.where( email: email ).first
@@ -40,6 +42,7 @@ module SwellMedia
 
 			if user.save
 
+				email_model.update_user_if_blank( user ) if email_model.present?
 				user.on_registration
 
 				log_event( { name: 'registration', content: "created a user account." } )
