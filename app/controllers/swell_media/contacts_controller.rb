@@ -5,8 +5,10 @@ module SwellMedia
 		def create
 			@contact = ContactUs.new( contact_params )
 
+			SwellMedia::Email.create_or_update_by_email( @contact.email, user: current_user )
+
 			if @contact.save
-				
+
 				SwellMedia::ContactMailer.new_contact( @contact ).deliver if SwellMedia.contact_email_to.present?
 
 				redirect_to thanks_contacts_path
