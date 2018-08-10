@@ -56,9 +56,17 @@ module SwellMedia
 							self.try( "#{name}_id=", value_id )
 						end
 
-					end
 
-					super(name,scope,options)
+						if options.present?
+							super(name,scope,options)
+						else
+							super(name, scope)
+						end
+					elsif options.present?
+						super(name, scope, options)
+					else
+						super(name, scope)
+					end
 				end
 
 			end
